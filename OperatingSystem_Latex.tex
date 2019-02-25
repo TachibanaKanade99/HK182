@@ -1,0 +1,107 @@
+\documentclass[10pt]{article}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage[utf8]{vietnam}\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+\usepackage{graphicx,graphics}
+
+\begin{document}
+
+\begin{center}
+\huge Operating System
+\end{center}
+
+\section{Overview}
+
+\quotes{What is Operating System ?}
+\begin{itemize}
+	\item An operating system acts an intermediary(trung gian) between the user of a computer and the computer hardware.
+	\item Operating system provide an environment in which a user can execute programs in a \textit{convenient} and \textit{efficient} manner.
+	\item An Operating System is software that manages the computer hardware, the hardware must provide appropriate mechanisms to ensure the correct operation and prevent user from interfering with the proper operation of the system.
+\end{itemize}
+
+\subsection{What Operating System can do ?}
+\begin{enumerate}
+	\item A computer system can be divided into 4 components: the \textbf{hardware}, the \textbf{operating system}, the \textbf{application programs}, and the \textbf{users}.
+	\begin{itemize}
+		\item The Hardware includes the \textbf{central unit processing} (CPU), the \textbf{memory}, and the \textbf{input-output} (IO) \textbf{devices}
+		\item Hardware provides the basic computing resources for the system.
+		\item The Application programs define the ways in which these resources are used to solve user's computing problem.
+		\item The operating system controls the hardware and coordinates it use among the various application programs for various users.
+		\item In system's view, the operating system is the program most intimately involved with the hardware. an operating system can be viewed as \textbf{resource allocator}.
+		\item An operating system is a control program that manages the execution of user programs to prevent errors and improper use of the computer.
+		\item An operating system is a program running at all times on the computer - usually called the \textbf{kernel}
+	\end{itemize}
+
+	\item \textbf{Computer-System Operation} 
+	\begin{itemize}
+		\item For a computer to start running, it needs to have an initial program to run or \textbf{bootstrap program}.
+		\item Bootstrap program is stored in \textbf{ROM} (read-only memory) or \textbf{EEPROM} (electrically erasable programmable read-only memory) or \textbf{firmware}.
+		\item Bootstrap program initializes all aspects of the system, it knows how to load the operating system and start executing that system.
+		\item The operating system then starts executing the first process and waits for the occurrence events.
+		\item The occurrence of an event is usually signaled by an \textbf{interrupt} from either software or hardware.
+
+		\begin{itemize}
+			\item Hardware may trigger an interrupt at any time by sending a signal to the CPU.
+			\item Software may trigger a special operation called a \textbf{system call} or \textbf{monitor call}.
+		\end{itemize}
+
+	\end{itemize}
+
+	\item \textbf{Interrupt: }
+	\begin{itemize}
+		\item When the CPU is interrupted, it stops what it is doing and immediately transfers execution to a fixed location.
+		\item The fixed location usually contains the starting address where service routine for the interrupt is located.
+		\item The interrupt must transfer control to the appropriate interrupt service routine.
+		\item The \textbf{interrupt vector} provide the address of the interrupt service routine for the interrupting device.
+		\item The interrupt architecture must also save the address of the interrupted instruction.
+		\item Incoming interrupts are disabled while another interrupt is being processed to prevent a \textbf{lost interrupt}
+		\item A \textbf{trap} is a software-generated interrupt caused either by an error or a user request.
+		\item An operating system is \textbf{interrupt driven}. 
+	\end{itemize}
+
+	\item \textbf{Storage Structure}
+	\begin{itemize}
+		\item General-purpose computers run most of their program from rewritable memory, called main memory (or random-access memory (RAM)).
+		\item Main memory is commonly implemented in a semiconductor technology called \textbf{dynamic random-access memory} (DRAM).
+		\item Main memory is usually too small to store all needed programs and data permanently.
+		\item Main memory is a \textit{volatile} storage device that loses its contents when power is turned off or otherwise lost.
+		$\rightarrow$ \textbf{secondary storage} for larges quantities of data permanently.
+		\item \textbf{magnetic disk}: provide storage for both program and data.
+		\item Most programs (system and application) are storage on a disk until they are loaded into memory.
+		\item Differences between among the various storage systems lie on speed, cost, size and volatility.
+
+		\bigbreak
+		\includegraphics[scale = 0.3]{hinh.png}
+		\bigbreak
+
+		\item In the absence of power and general backup systems, some data must be written to \textbf{nonvolatile storage}.
+		\item Some nonvolatile disks are electronic disk, NVRAM (DRAM with battery backup power).
+	\end{itemize}
+
+\end{enumerate}
+
+\end{document}
