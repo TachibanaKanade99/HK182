@@ -1,0 +1,284 @@
+\documentclass[10pt]{article}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage[utf8]{vietnam}\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+\usepackage{graphicx,graphics}
+
+\begin{document}
+
+\begin{center}
+	DATABASE SYSTEM
+\end{center}
+
+\section{Chapter I: Introduction to Database}
+
+\subsection{Some Definitions: }
+\begin{itemize}
+	\item Database is a collection of related data.
+	\item Data is facts that can be recorded and have implicit meaning.
+	\item Database Management System (DBMS) is a computerized system that enables users to create and maintain a database.
+	\item DBMS is a \textbf{general-purpose software system} that faciliates the processes of \textit{defining, constructing, manipulating} and \textit{sharing} databases among various users and applications.
+\end{itemize}
+	
+\subsection{DBMS System:}
+	\begin{itemize}
+		\item \textbf{Defining the database} involves specify the data types, structures, and constraints of the data to be stored in the database.
+		\item \textbf{Meta-data}, The database definition or descriptive information is also stored by the DBMS in the form of a database catalog and dictionary.
+		\item \textbf{Constructing the database} is the process of storing the data on some storage medium that is controlled by the DBMS.
+		\item \textbf{Manipulating the database} includes functions such as querying the database to retrieve specific data, updating the database to reflect changes in the miniworld.
+		\item \textbf{Sharing the database} allows multiple users and programs to access the database simultaneously.
+	\end{itemize}
+
+\subsection{Application Program:}
+	\begin{itemize}
+		\item An \textbf{application program} accesses the database by sending queries or requests for data to DBMS.
+		\item A \textbf{query} typically causes data to be retrieved.
+		\item A \textbf{transaction} causes data to be read and written into the database.
+	\end{itemize}
+
+	- DBMS also provides functions for \textbf{protecting} and \textbf{maintaining} the database system:
+	\begin{itemize}
+		\item \textbf{Protecting} includes \textit{system protection} against hardware or software malfuncton (or crash) and \textit{security protection} against unauthorized and malicious access. 
+		\item A DBMS need to \textbf{maintain} the database system by allowing the system as requirement change overtime.
+	\end{itemize}
+
+\bigbreak
+\begin{mybox}
+	\begin{center}
+		Database system = database + DBMS
+	\end{center}
+\end{mybox}
+	
+	\bigbreak
+	\begin{itemize}
+		\item Conceptual Design.
+		\item Logic Design.
+		\item Physical Design.
+	\end{itemize}
+
+	- Design of the new application for an existing database or design of a brand new database starts off with a phase called \textbf{requirements specification and analysis}. \\
+
+	- These requirements are documented in detail and transformed into a \textbf{conceptual design} that can be represented and manipulated by some computerized tools $\rightarrow$ easily modified, maintained and transformed into \textbf{database implementation}. \\
+
+	- The design is then translated into \textbf{logical design}. that can be expressed in a data model implemented in a commercial DBMS. \\
+
+	- The final stage is called \textbf{physical design}, further specifications are provided for storing and access database. \\
+
+\subsection{Characteristic of the Database Approach: }
+\begin{enumerate}
+	\item File processing:
+	\begin{itemize}
+		\item A traditional \textbf{file processing}, each user defines and implements the files needed for the specific software application.
+		\item Both users are interested in same data but each users maintain separate files and programs to manipulate files.
+		\item This redundancy in defining and storing data results in wasted storage sapce and in redundant effort to maintain common up-to-date data.
+	\end{itemize}
+
+	\item Database Approach:
+	\begin{itemize}
+		\item In database approach, a single repository maintains data that defined once and then accessed by various users repeatedly though queries, transactions, and application programs.
+		\item The main characteristic of the database approach vs file processing:
+		\begin{itemize}
+			\item Self-describing nature of a database system.
+			\item Insulation (ngăn cách) between programs and data, and data abstraction.
+			\item Support of the multiple views of the data.
+			\item Sharing of data and multiuser transaction processing.
+		\end{itemize}
+	\end{itemize}
+
+	\begin{enumerate}
+		\item Self-Describing Nature of a Database System:
+		\begin{itemize}
+			\item The database system contain not only the database itself but also a complete definition or description of database structure and constraints.
+			\item The information stored in the DBMS catalog is called \textbf{meta-data}, it describles the structure of the primary datatabase.
+			\item NOSQL systems do not require meta-data, those data is sstored in \textbf{self-describing data} that includes the data item names and dara values together in 1 structure.
+			\item The DBMS software must work equally well with \textit{any number of database applications}
+		\end{itemize}
+
+		\item Insulation between Programs and Data, and Data Abstraction:
+		\begin{itemize}
+			\item The structure of data files is stored in the DBMS catalog separately from the access program, this is called \textbf{program-data indepedence}. \\
+			(Why \textbf{meta-data enable data-program independence ?})
+			\item An operation (known as function or method) is specific in \textit{interface} and \textit{implementation}.
+
+			\begin{itemize}
+				\item interface includes operation name and its data types of its argument.
+				\item implementation of the operation is specified separately and can be changed without affecting the interface.
+			\end{itemize}
+
+			\item This may be known as \textbf{program-operation independence}.
+			\item The characteristic that allows program-data independence and program-operation independence is called \textbf{data abstraction}.
+			\item A \textbf{data model} is a type of data abstraction that is used to provided this conceptual representation. The data model \textit{hides} storage and implementation out of database users.  
+		\end{itemize}
+
+		\item Support of multiple views of the Data: 
+		\begin{itemize}
+			\item A multiuser DBMS whose users have a variety of distinct applications must provide facilities for multiple views.
+		\end{itemize}
+
+		\item Sharing of Data and Multiuser Transaction Processing: 
+		\begin{itemize}
+			\item This is essential if data for multiple users to be integrated and maintained for a single database.
+			\item The DBMS must include \textbf{concurency control} software to ensure that several users trying to update the same data so that the results of update is correct.
+		\end{itemize} 
+	\end{enumerate}
+
+	\item Actors on the Scene:
+	\begin{itemize}
+		\item Database Adminstrators.
+		\item Database Designers.
+		\item End users.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Advantages of Using the DBMS Approach}
+\begin{enumerate}
+	\item Reduce Redundancy:
+	\begin{itemize}
+		\item Data normalization: All logical data item are stored in \textit{only one place} in the database.
+	\end{itemize} 
+
+	\item Restricting Unauthorized Access:
+	\item Provide persistent storage for Program Object:
+	\item Provide Storage Structures and Search Techniques for efficient Query processing:
+	\item Provide Backup and Recovery:
+	\item Provide Multiple User Interfaces:
+	\item Represent Complex Relationships among Data:
+	\item Enforcing Integrity Constraints:
+	\item Permitting Interfencing and Actions using Rules and Triggers:
+\end{enumerate}
+
+\subsection{When not to use DBMS}
+\begin{enumerate}
+	\item It maybe more desirable to develop customized database applications:
+	\begin{itemize}
+		\item Simple, well-defined database applications that are not expected to change at all.
+		\item Stringent, real-time requirements for some application programs that may not met bacase of DBMS overhead.
+		\item Embedded devices with limited storage capacity, where a general-purpose DBMS would not fit.
+		\item No multiple user-access data.
+	\end{itemize}
+\end{enumerate}
+
+\bigbreak
+\section{Chapter II: Database System Concepts and Architecture}
+
+\subsection{Data Models, Schemas, and Instances}
+\begin{enumerate}
+	\item Data Models:
+	\begin{itemize}
+		\item A data model is a collection of concepts that can be used to describle the structure of the database - provides the neccessary means to achieve this abstraction.
+		\item Most data models also include set of \textbf{basic operations} for specifying retrievals and updates on the database.
+		\item Types of Data Model:
+		\begin{itemize}
+			\item \textbf{High-level} or \textbf{conceptual data models} provide concepts that are close to the way many users realize data.
+			\item \textbf{Low-level} or \textbf{physical data model} provide concepts that describle the detail of how data is stored in the conputer storage media, typically magnetic disk.
+			\item \textbf{Representational} (or \textbf{implementation}) \textbf{data models} provide concepts that may be easily understood by end users but that are not \underline{too far removed} (very different from) from the way data is organized in computer storage.
+		\end{itemize}
+	\end{itemize}
+
+	\item Schemas, Instances, and Database State:
+	\begin{itemize}
+		\item Schemas is kind of layout of the database.
+		\item The actual data in the database may change quite frequently. The data in the database at the particular moment of time is called a \textbf{database state} or \textbf{snapshot}
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Three-Schema Architecture and Data Independence}
+\begin{enumerate}
+	\item The three-schema Architecture: \\
+	
+	\includegraphics[scale = 0.5]{hinh.png}
+
+	\begin{itemize}
+		\item The \textbf{internal level} has an \textbf{internal schema} describles the physical storage structure of the database.
+		\item The \textbf{conceptual level} has a \textbf{conceptual schema} describles the structure of the whole database for users.
+		\item The \textbf{external} or \textbf{view level} includes a number of \textbf{external schemas} or \textbf{user views}.
+	\end{itemize}
+
+	\item Data Independence: 
+	\begin{enumerate}
+		\item \textbf{Logical data independence:} is the capacity to change the conceptual schema without having to change external schemas or application programs.
+		\item \textbf{Physical data independence:} is the capacity to change the internal schema without having to change the conceptual schema
+		\item Summary: Data indepedence occurs when the schema is changed at some level, the schema at the next higher level remains unchanged; only the \textit{mapping} between the teo levels is changed. Hence, aplication referring to the higher level schema do not need to be changed.
+
+		\bigbreak
+		\includegraphics[scale = 0.5]{hinh1.png}
+		\bigbreak 
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Database Languges and Interfaces}
+\begin{enumerate}
+	\item DBMS Languages:
+	\begin{itemize}
+		\item \textbf{Data definition language} (DDL) : used to define both conceptual and external schemas where no strict separation of levels is maintained.
+		\item \textbf{Storage definition language} (SDL):
+		\begin{itemize}
+			\item is used to specify the internal schema.
+			\item DDL is used in conceptual schema.
+			\item It is used where there is a clear separation between the conceptual and external levels
+		\end{itemize}  
+		\item \textbf{View definition language} (VDL) : is used to specify user views and their mapping to the conceptual and external schemas.
+		\item Beside, DBMS also provides a set of operations or a language called the \textbf{data manipulation language} (DML) for manipulating the database. \\
+
+		\begin{itemize}
+			\item A \textbf{high-level} or \textbf{nonprocedural} DML.
+			\begin{itemize}
+				\item It is used to specify complex database operations concisely (chính xác).
+				\item Many DBMSs allow high-level DML statements to be entered from the display monitor or terminal or to be embedd in a general-purpose programming language.
+				\item High-level DML, such as SQL can specify and retrieve many records in a single DML statement, it is called \textbf{set-at-a-time} 
+			\end{itemize}
+			\item A \textbf{low-level} or \textbf{procedural} DML.
+			\begin{itemize}
+				\item It \textit{must} be embedded in a general-purposes language.
+				\item It is also called as \textbf{record-at-a-time} since it functions related to retrieving and processing individuals records and objects.
+			\end{itemize}
+		\end{itemize}
+
+		\item Whenever DMLS commands, whether high-level or low-level, are embedded in a general-purpose language and that language is called the \textbf{host language} and DML is called the \textbf{data sublanguage}.
+		\item A high-level DML used in a standalone interative manner is called a \textbf{query lenguage}.
+	\end{itemize}
+
+	\item DBMS Interfaces:
+	\begin{itemize}
+		\item Menu-based Interfaces for Web Clients or Browsing
+		\item Apps for Mobile Devices
+		\item Forms-based Interfaces
+		\item Graphic User Interfaces
+		\item Natural Language Interfaces
+		\item Keyboard-based Database Search
+		\item Search Input and Output
+	\end{itemize}
+\end{enumerate}
+
+\subsection{The Database System Environment}
+
+ 
+
+
+
+
+\end{document}
