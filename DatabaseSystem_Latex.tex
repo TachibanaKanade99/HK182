@@ -760,7 +760,13 @@
 	\begin{itemize}
 		\item The \textbf{entity integrity constraints} states that no primary key value can be NULL. (primary key value is used to identify individual tuples in a relation).
 		\item Key constraints and entity integrity constraints are specified on individual relations.
-		\item The \textbf{referential integrity constraints} is specified between two relations and is used to maintain the consistency among tuples in the two relation.
+		\item The \textbf{referential integrity constraints} is specified between two relations and is used to maintain the consistency among tuples in the two relations.
+		\item The referential integrity constraints states that a tuple in one relation that refers to another relation must refer to an \textit{existing tuple} in that relation.
+		\item To define \textit{referential integrity} $\rightarrow$ the concept of \textit{foreign key} (FK). A set of attributes FK in relation schema $R_1$ is a \textbf{foreign key} of $R_1$ that \textbf{references} relation $R_2$ if it satisfies:
+		\begin{itemize}
+			\item The attributes in FK have the same domain(s) as the primary key attributes (PK) of $R_2$; the attributes FK are said to \textbf{reference} or \textbf{refer to} the relation $R_2$.
+			\item A value of FK in a tuple $t_1$ of the current state $r_1$ ($R_1$) either occurs as a value of PK for some tuple $t_2$ in the current state $r_2$ ($R_2$) or is \textit{NULL}. iN the former case, we have $t_1[FK]$ = $t_2[PK]$, and we say that the tuple $t_1$ \textbf{references} or \textbf{refers to} to the tuple $t_2$
+		\end{itemize}   
 	\end{itemize}
 \end{enumerate}
 
