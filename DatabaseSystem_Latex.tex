@@ -765,10 +765,78 @@
 		\item To define \textit{referential integrity} $\rightarrow$ the concept of \textit{foreign key} (FK). A set of attributes FK in relation schema $R_1$ is a \textbf{foreign key} of $R_1$ that \textbf{references} relation $R_2$ if it satisfies:
 		\begin{itemize}
 			\item The attributes in FK have the same domain(s) as the primary key attributes (PK) of $R_2$; the attributes FK are said to \textbf{reference} or \textbf{refer to} the relation $R_2$.
-			\item A value of FK in a tuple $t_1$ of the current state $r_1$ ($R_1$) either occurs as a value of PK for some tuple $t_2$ in the current state $r_2$ ($R_2$) or is \textit{NULL}. iN the former case, we have $t_1[FK]$ = $t_2[PK]$, and we say that the tuple $t_1$ \textbf{references} or \textbf{refers to} to the tuple $t_2$
+			\item A value of FK in a tuple $t_1$ of the current state $r_1$ ($R_1$) either occurs as a value of PK for some tuple $t_2$ in the current state $r_2$ ($R_2$) or is \textit{NULL}. iN the former case, we have $t_1[FK]$ = $t_2[PK]$, and we say that the tuple $t_1$ \textbf{references} or \textbf{refers to} to the tuple $t_2$.
+			\item $R_1$ is called the \textbf{referencing relation} and $R_2$ is the \textbf{referenced relation}.
+			\item A foreign key can \textit{refer to its own relation}.
+			\item We can diagrammatically display referential integrity constraints by drawing a directed arc from each foreign key to the relation it references. For clarity, the arrowhead may point to the primary key of the referenced relation.
 		\end{itemize}   
 	\end{itemize}
+
+	\item \textbf{Other Types of Constraints: }
+	(read textbooks if necessary)
 \end{enumerate}
+
+\subsection{Update Operations, Transactions, and Dealing with Constraints Violations}
+
+\begin{itemize}
+	\item The operations of a relational model can be categorized into \textit{retrievals} and \textit{updates}.
+	\item The relational algebra operations can be used to specify \textbf{retrievals}.  
+	\item A relational algebra expression forms a new relation after applying a number of algebraic operators to an existing set of relations; its main use is for querying a database to retrieve information.
+	\item The user formulates a query that specifies the data of interest, and a new relation is formed by applying relational operators to retrieve this data. The \textbf{result relation} becomes the answer to the user's query.
+	\item \textbf{relational calculus} is used to define a query declaratively without giving a specific order of operations.
+	\item There are three basic operations that can change the states of relations in the database: Insert, Delete, and Update (or Modify):
+	\begin{itemize}
+		\item \textbf{Insert} is used to insert one or more new tuples in a relation.
+		\item \textbf{Delete} is used to delete tuples.
+		\item \textbf{Update} (or \textbf{Modify}) is used to change the values of some attributes in existing tuples.
+	\end{itemize} 
+	\item Whenever these operations are applied, the integrity constraints specified on the relational database schema should not be violated. 
+\end{itemize}
+
+\begin{enumerate}
+	\item \textbf{The Insert Operation}
+	\begin{itemize}
+		\item The \textbf{Insert} operation provide a list of attribute values for new tuple \textit{t} that is to be inserted into a relation \textit{R}. Insert can violate any of the 4 types of constraints:
+		\begin{itemize}
+			\item Domain constraints can be violated if an attribute value is given that does not appear in the corresponding domain or is not of the appropriate data type.
+			\item Key constraints can be violated if a key value in the new tuple \textit{t} already exists in another tuple in the relation \textit{r(R)}.
+			\item Entity integrity can be violated if the value of any primary key of the new tuple is \textit{NULL}.
+			\item Referential integrity can be violated if the value of any foreign key in \textit{t} refers to a tuple that does not exist in the referenced relation.
+		\end{itemize}
+
+		\item If the insertion violates one or more constraints, the default option is to \textit{reject} the insertion.
+	\end{itemize}
+
+	\item \textbf{The Delete Operation}
+	\begin{itemize}
+		\item The \textbf{Delete} operation can violate only referential integrity. This occurs if the tuple being deleted is referenced by foreign keys from other tuples in the database.
+		\item If a deletion causes a violation, there are 2 options:
+		\begin{itemize}
+			\item \textbf{restrict:} \textit{reject the deletion}.
+			\item \textbf{cascade:} \textit{deletes tuples that reference the tuple that is being deleted.} Note that if a referencing attribute that causes a violation is \textit{part of the primary key}, it \textit{cannot} be set to NULL; otherwise it would violates the entity integrity.
+			\item In general, when a referential integrity constraints is specified in the DDL, the DBMS will allow the database designer to \textit{specify which of the options} applies in case of a violation of the constraints. 
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{The Update Operation}
+	\begin{itemize}
+		\item Updating an attribute that is \textit{neither part of primary key nor part of a foreign key} usually causes no problem.
+		\item Modifying a primary key value is similar to deleting one tuple and inserting another in its place because we use the primary key to identify tuples.
+		\item If a foreign key is modified, the DBMS must make sure that the new value refers to an existing tuple in the referenced relation (or is set to NULL).
+	\end{itemize}
+\end{enumerate}
+
+\subsection{The Transaction Concept}
+\begin{itemize}
+	\item A \textbf{transaction} is an executing program that includes some database operations, such as reading from the database, or applying insertions, deletions, or updates to the database.
+	\item At the end of the transaction, it must leave the database in a valid or consistent state that satisfies all the constraints specified on the database schema.
+	\item A single transaction may involve any number of retrieval operations and any number of update operations. These retrieval and updates will together form an atomic unit of work against the database.
+\end{itemize}
+
+\begin{center}
+	End
+\end{center}
+
 
 
 
