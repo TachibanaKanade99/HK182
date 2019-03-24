@@ -34,7 +34,7 @@
 	DATABASE SYSTEM
 \end{center}
 
-\section{Chapter I: Introduction to Database}
+\section*{Chapter I: Introduction to Database}
 
 \subsection{Some Definitions: }
 \begin{itemize}
@@ -94,7 +94,7 @@
 	\begin{itemize}
 		\item A traditional \textbf{file processing}, each user defines and implements the files needed for the specific software application.
 		\item Both users are interested in same data but each users maintain separate files and programs to manipulate files.
-		\item This redundancy in defining and storing data results in wasted storage sapce and in redundant effort to maintain common up-to-date data.
+		\item This redundancy in defining and storing data results in wasted storage space and in redundant effort to maintain common up-to-date data.
 	\end{itemize}
 
 	\item Database Approach:
@@ -113,14 +113,14 @@
 		\item Self-Describing Nature of a Database System:
 		\begin{itemize}
 			\item The database system contain not only the database itself but also a complete definition or description of database structure and constraints.
-			\item The information stored in the DBMS catalog is called \textbf{meta-data}, it describles the structure of the primary datatabase.
-			\item NOSQL systems do not require meta-data, those data is sstored in \textbf{self-describing data} that includes the data item names and dara values together in 1 structure.
+			\item The information stored in the DBMS catalog is called \textbf{meta-data}, it describes the structure of the primary database.
+			\item NOSQL systems do not require meta-data, those data is stored in \textbf{self-describing data} that includes the data item names and data values together in 1 structure.
 			\item The DBMS software must work equally well with \textit{any number of database applications}
 		\end{itemize}
 
 		\item Insulation between Programs and Data, and Data Abstraction:
 		\begin{itemize}
-			\item The structure of data files is stored in the DBMS catalog separately from the access program, this is called \textbf{program-data indepedence}. \\
+			\item The structure of data files is stored in the DBMS catalog separately from the access program, this is called \textbf{program-data independence}. \\
 			(Why \textbf{meta-data enable data-program independence ?})
 			\item An operation (known as function or method) is specific in \textit{interface} and \textit{implementation}.
 
@@ -142,13 +142,13 @@
 		\item Sharing of Data and Multiuser Transaction Processing: 
 		\begin{itemize}
 			\item This is essential if data for multiple users to be integrated and maintained for a single database.
-			\item The DBMS must include \textbf{concurency control} software to ensure that several users trying to update the same data so that the results of update is correct.
+			\item The DBMS must include \textbf{concurrency control} software to ensure that several users trying to update the same data so that the results of update is correct.
 		\end{itemize} 
 	\end{enumerate}
 
 	\item Actors on the Scene:
 	\begin{itemize}
-		\item Database Adminstrators.
+		\item Database Administrators.
 		\item Database Designers.
 		\item End users.
 	\end{itemize}
@@ -176,25 +176,25 @@
 	\item It maybe more desirable to develop customized database applications:
 	\begin{itemize}
 		\item Simple, well-defined database applications that are not expected to change at all.
-		\item Stringent, real-time requirements for some application programs that may not met bacase of DBMS overhead.
+		\item Stringent, real-time requirements for some application programs that may not met base of DBMS overhead.
 		\item Embedded devices with limited storage capacity, where a general-purpose DBMS would not fit.
 		\item No multiple user-access data.
 	\end{itemize}
 \end{enumerate}
 
 \bigbreak
-\section{Chapter II: Database System Concepts and Architecture}
+\section*{Chapter II: Database System Concepts and Architecture}
 
 \subsection{Data Models, Schemas, and Instances}
 \begin{enumerate}
 	\item Data Models:
 	\begin{itemize}
-		\item A data model is a collection of concepts that can be used to describle the structure of the database - provides the neccessary means to achieve this abstraction.
+		\item A data model is a collection of concepts that can be used to describe the structure of the database - provides the necessary means to achieve this abstraction.
 		\item Most data models also include set of \textbf{basic operations} for specifying retrievals and updates on the database.
 		\item Types of Data Model:
 		\begin{itemize}
 			\item \textbf{High-level} or \textbf{conceptual data models} provide concepts that are close to the way many users realize data.
-			\item \textbf{Low-level} or \textbf{physical data model} provide concepts that describle the detail of how data is stored in the conputer storage media, typically magnetic disk.
+			\item \textbf{Low-level} or \textbf{physical data model} provide concepts that describe the detail of how data is stored in the computer storage media, typically magnetic disk.
 			\item \textbf{Representational} (or \textbf{implementation}) \textbf{data models} provide concepts that may be easily understood by end users but that are not \underline{too far removed} (very different from) from the way data is organized in computer storage.
 		\end{itemize}
 	\end{itemize}
@@ -213,8 +213,8 @@
 	\includegraphics[scale = 0.5]{hinh.png}
 
 	\begin{itemize}
-		\item The \textbf{internal level} has an \textbf{internal schema} describles the physical storage structure of the database.
-		\item The \textbf{conceptual level} has a \textbf{conceptual schema} describles the structure of the whole database for users.
+		\item The \textbf{internal level} has an \textbf{internal schema} describes the physical storage structure of the database.
+		\item The \textbf{conceptual level} has a \textbf{conceptual schema} describes the structure of the whole database for users.
 		\item The \textbf{external} or \textbf{view level} includes a number of \textbf{external schemas} or \textbf{user views}.
 	\end{itemize}
 
@@ -222,7 +222,7 @@
 	\begin{enumerate}
 		\item \textbf{Logical data independence:} is the capacity to change the conceptual schema without having to change external schemas or application programs.
 		\item \textbf{Physical data independence:} is the capacity to change the internal schema without having to change the conceptual schema
-		\item Summary: Data indepedence occurs when the schema is changed at some level, the schema at the next higher level remains unchanged; only the \textit{mapping} between the teo levels is changed. Hence, aplication referring to the higher level schema do not need to be changed.
+		\item Summary: Data independence occurs when the schema is changed at some level, the schema at the next higher level remains unchanged; only the \textit{mapping} between the two levels is changed. Hence, plication referring to the higher level schema do not need to be changed.
 
 		\bigbreak
 		\includegraphics[scale = 0.5]{hinh1.png}
@@ -230,7 +230,7 @@
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Database Languges and Interfaces}
+\subsection{Database Languages and Interfaces}
 \begin{enumerate}
 	\item DBMS Languages:
 	\begin{itemize}
@@ -258,8 +258,8 @@
 			\end{itemize}
 		\end{itemize}
 
-		\item Whenever DMLS commands, whether high-level or low-level, are embedded in a general-purpose language and that language is called the \textbf{host language} and DML is called the \textbf{data sublanguage}.
-		\item A high-level DML used in a standalone interative manner is called a \textbf{query lenguage}.
+		\item Whenever DMLS commands, whether high-level or low-level, are embedded in a general-purpose language and that language is called the \textbf{host language} and DML is called the \textbf{data sub language}.
+		\item A high-level DML used in a standalone interactive manner is called a \textbf{query language}.
 	\end{itemize}
 
 	\item DBMS Interfaces:
@@ -275,10 +275,502 @@
 \end{enumerate}
 
 \subsection{The Database System Environment}
+\begin{enumerate}
+	\item \textbf{DBMS Component Modules}
+	\begin{itemize}
+		\item Many DBMSs have \textbf{buffer management} module to schedule disk read/write since management of buffer storage has a considerable effect on performance by reducing disk read/write.
+		\item A high-level \textbf{sorted data manager} module of the DBMS controls access to DBMS information that is stored on disk, whether it is part of the database or the catalog.
+	\end{itemize}
 
- 
+	\item \textbf{Database System Utilities}
+	\begin{itemize}
+		\item Most DBMSs have \textbf{database utilities} to help the DBA manage the database system.
+		\begin{itemize}
+			\item Loading
+			\item Backup
+			\item Database storage reorganization
+			\item Performance monitoring (monitors database and provide video statistics to the DBA)
+		\end{itemize} 
+	\end{itemize}
+\end{enumerate}
+
+\bigbreak
+\begin{center}
+	End
+\end{center}
+\pagebreak
+
+\section*{Chapter III: Conceptual Data Modeling and Database Design}
+
+\quotes{The conceptual schema is a concise description of the data requirements of the users and includes detailed descriptions of the entity types, relationships, and constraints, using the concept provided by high-level data model.}
+
+\quotes{ER model is a logical organization of data within a database system. ER model technique is based on relational data model}
+
+\subsection{Entity Types, Entity Sets, Attributes, and Keys}
+\begin{enumerate}
+	\item \textbf{Entity}
+	\begin{itemize}
+		\item Entity is a \textit{thing} or \textit{object} in the real world with an independence existence.
+		\item An entity may be an object with a physical existence or it may be an object with a conceptual existence (Ex: company, university jobs, etc).
+	\end{itemize}
+
+	\item \textbf{Attribute}
+	\begin{itemize}
+		\item Each entity has attributes - the particular properties that describe it.
+		\item Types of attributes in the ER model:
+		\begin{itemize}
+			\item \textbf{Composite versus Simple}
+			\begin{itemize}
+				\item \textbf{Composite attributes} can be divided into smaller subparts, which represent more \textbf{basic} attributes with independence meanings.
+				\item Attributes that are not divisible are called \textbf{simple} or \textbf{atomic attributes} 
+			\end{itemize}
+
+			\item \textbf{Single-Valued versus Multivalued Attributes}
+			\begin{itemize}
+				\item Attributes have a single value for a particular entity are called \textbf{single valued entity}.
+				\item Attributes have a multiple value for a particular entity are called \textbf{multivalued entity}.
+			\end{itemize}
+
+			\item \textbf{Stored versus Derived Attributes}
+			\begin{itemize}
+				\item Attributes that are related to or can be determined by another attributes are called \textbf{derived attributes}.
+				\item The others are called \textbf{stored attributes}.
+			\end{itemize}
+
+			\item \textbf{NULL Values}
+			\begin{itemize}
+				\item Attributes that particular entities may not have an applicable value for. (\textit{not applicable})
+				\item NULL can be also be used if we do not know the value of an attribute for a particular entity. (\textit{unknown}) 
+			\end{itemize}
+
+			\item \textbf{Complex Attributes}: composite and multivalued can be nested arbitrarily.
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Entity Types and Entity Sets}
+	\begin{itemize}
+		\item An \textbf{entity type} defines a \textit{collection} (or \textit{set}) of entities that have the same attributes.
+		\item Each entity type in the database is described by its name and attributes.
+		\item The collection of all entities of a particular entity type in the database at any point is called an \textbf{entity set} or \textbf{entity collection}.
+		\item The entity set is usually referred to using the same name as the entity type, even though they are two separate concepts.
+		\item An entity type describes the \textbf{schema} or \textbf{intension} for \textit{a set of entities} that share the same structure.
+		\item The collection of entities of a particular entity type is grouped into an entity set, which is also called the \textbf{extension} of the entity type.
+	\end{itemize}
+
+	\item \textbf{Key Attributes of an Entity Type}
+	\begin{itemize}
+		\item An important constraint on the entities of an entity type is the \textbf{key} or \textbf{uniqueness constraint} on attributes.
+		\item An entity type has one or more attributes whose values are distinct for each individual entity in the entity set, those attributes are called \textbf{key attributes}, and its value can be used to identify each entity uniquely.
+		\item An attribute is a key of an entity type means that the preceding uniqueness property must hold for \textit{every entity set} of the entity type.   
+	\end{itemize}
+
+	\item \textbf{Value Sets (Domains) of Attributes}
+	\begin{itemize}
+		\item Each simple attribute of an entity type is associated with a \textbf{value set} (or \textbf{domain} of the values), which specifies the set of values that may be assigned to that attribute for each individual entity. 
+	\end{itemize}	
+\end{enumerate}
+
+\subsection{Relationship Types, Relationship Sets, Roles, and Structural Constraints}
+\begin{enumerate}
+	\item Relationship Types, Sets, and Instances
+	\begin{itemize}
+		\item \textbf{Relationship Types, Sets, and Instances}
+		\begin{itemize}
+			\item A \textbf{relationship type} R among n entity types $E_{1}, E{2}, \ldots, E_{n}$ defines a set of associations - or a \textbf{relationship set} - among entities from these entity types.
+			\item The relationship set R is a set of \textbf{relationship instances} $r_{i}$, where each $r_{i}$ associates n individual entities ($e_{1}, e_{2}, \ldots, e_{n}$) and each entity $e_{j}$ in $r_i$ is a member of entity set $E_{j}$.
+		\end{itemize}
+
+		\item \textbf{Relationship Degree, Role Names, and Recursive Relationships}
+		\begin{itemize}
+			\item \textbf{Degree of a Relationship Type}
+			\begin{itemize}
+				\item The \textbf{degree} of a relationship type is the number of participating entity type.
+			\end{itemize}
+
+			\item \textbf{Relationship as Attributes}
+			\item \textbf{Role Names and Recursive Relationships}
+			\begin{itemize}
+				\item The \textbf{role name} signifies the role that a participating entity from the entity type plays in each role relationship instance, and it helps to explain what the relationship means.
+				\item Role name are not technically necessary in relationship types where all the participating entity are distinct, since each participating entity type name can by used as the role name.
+				\item In case the \textit{same} entity type participates in a relationship type in \textit{different roles}, the role name becomes essential. \\
+				$\rightarrow$ Such relationship types are called \textbf{recursive relationship} or \textbf{self-referencing relationships}. 
+			\end{itemize}
+		\end{itemize}
+
+		\item \textbf{(Structural) Constraints on Binary Relationships Types}
+		\begin{itemize}
+			\item \textbf{Cardinality Ratios for Binary Relationships}
+			\begin{itemize}
+				\item The \textbf{cardinality ratio} for a binary relationship specifies the \textit{maximum} number of relationship instances that an entity can participate on.
+			\end{itemize}
+
+			\item \textbf{Participation Constraints and Existence Dependencies}
+			\begin{itemize}
+				\item The \textbf{participation constraint} specifies whether the existence of an entity depends on its being related to another entity via the relationship type.
+				\item This constraint specifies the \textit{minimum} number of relationship instances that each entity can participate in, called the \textbf{minimum cardinality constraint}.
+				\item There are two types of participation constraints:
+				\begin{itemize}
+					\item \textbf{Total participation: } every entity in the total set of entities must related to another entity set via a relationship, called \textbf{existence dependency}
+					\item \textbf{Partial Participation: } some or \textit{some or part of the set of} entities are related to some other entities via a relationship. 
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+
+		\item \textbf{Attributes of Relationship Types}
+		\begin{itemize}
+			\item Relationship types can also have attributes, similar to those of entity types.
+			\item The attributes of 1:1 relationship types can be determined separately, as either one of the participating types.
+			\item However, for 1:N relationship types, a relationship attribute can be migrated \textit{only} to the entity type on the N-side of the relationship.
+			\item For M:N (many-to-many) relationship types, some attributes may be determined by the \textit{combination of participating entities} in a relationship instance, not by any single entity. Such attributes must be \textit{specified as relationship attributes}.
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Weak Entity Types}
+\begin{enumerate}
+	\item \textbf{Definitions: }
+	\begin{itemize}
+		\item Entity types that do not have key attributes of their own are called \textbf{weak entity types}.
+		\item In contrast, \textbf{regular entity types} that do have a key attributes are called \textbf{strong entity types}.
+		\item Entities belonging to a weak entity type are identified by being related to specific entities from another entity type in combination with one of their attribute values. Those entities are called \textbf{identifying} or \textbf{owner entity type}.
+		\item Relationship type that relates to a weak entity type to its owner is called \textbf{identifying relationship} of the weak entity type.
+		\item A weak entity type always have a \textit{total participation constraint} (existence dependency) with respect to its identifying relationship because a weak entity cannot be identified without an owner entity.
+		\item A weak entity type normally has a \textbf{partial key}. which is the attribute that can uniquely identify weak entities that are related to the \textit{same owner entity}. In a worst case, a composite attribute of \textit{all the weak entity's attributes} will be the partial key.
+		\item Weak entity types can sometimes be represented as complex (composite, multivalued) attributes.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Proper Naming of Schema Constructs}
+\begin{itemize}
+	\item \textit{Singular Names} are chosen to named for entity types, rather than plural names because the entity type name applies to each individual entity belonging to that entity type.
+	\item Entity type and relationship type names are in uppercase letters, attribute names have their initial letter capitalized, and role names are in lowercase letters. 
+\end{itemize}
+
+\subsection{Notation for ER Diagrams}
+\includegraphics[scale = 0.4]{hinh2.png}
+\bigbreak
+
+\subsection{Other Notation: UML Class Diagrams}
+
+\subsection{Relationship Types of Degree Higher than Two}
+\bigbreak
+
+\subsection{Choosing between Binary and Ternary (or Higher-Degree) Relationships}
+\bigbreak
+
+\subsection{Constraints on Ternary (or Higher-Degree) Relationships}
+\bigbreak
+
+\subsection{Another Example: A UNIVERSITY Database}
+\bigbreak
+
+\begin{center}
+	End
+\end{center}
+\pagebreak
+
+%----------------------------------------------------------------%
+\section*{Chapter IV: The Enhanced Entity - Relationship (EER) Model}
+
+\subsection{Subclasses, Superclass's, and Inheritance}
+
+\quotes{The EER model includes \textit{all} the \textit{modeling concepts of the ER model}. In addition, it includes the concepts of \textbf{subclass} and \textbf{superclass} and the related concepts of \textbf{specialization} and \textbf{generalization}.}
+
+\begin{enumerate}
+	\item \textbf{Subclass:} A set of subset of the entities that belong to the entity set. Subclasses can also have \textbf{specific} (or local) \textit{attributes} and \textbf{relationships}.
+	\item \textbf{Superclass:} An entity set of subclasses.
+	\item An entity cannot exist in the database merely by being a member of a subclass, it must also be a member of the superclass, an entity can be also included as a member of any number of subclasses.
+	\item \textbf{Inheritance: }
+	\begin{itemize}
+		\item An entity in the subclass represents the same real-world entity from the superclass, it should process values for its specific attributes \textit{as well as} values of its attributes as a member of the superclass.
+	\end{itemize}
+	$\rightarrow$ The subclass \textbf{inherits} all the attributes of the entity as a member of the superclass. \\
+	$\rightarrow$ The entity also \textbf{inherits} all the relationships in which the superclass participates.
+\end{enumerate}
+
+\subsection{Specialization and Generalization}
+\begin{enumerate}
+	\item \textbf{Specialization: }
+	\begin{itemize}
+		\item \textbf{Specialization:} is the process of defining \textit{a set of subclasses} of an entity type; this entity type is called the \textit{superclass} of specialization.
+		\item There are two main reasons for including class/subclass relationships and specializations:
+		\begin{itemize}
+			\item The first:
+			\begin{itemize}
+				\item Certain attributes may apply to some but not all entities of the superclass entity type.
+				\item A subclass is defined in order to group the entities to which these attributes apply.
+				\item The members of the subclass may still share the majority of their attributes with the other members of the superclass.
+			\end{itemize}
+
+			\item The second:
+			\begin{itemize}
+				\item Some relationship types may be participated in only by entities that are members of the subclass.  
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Generalization}
+	\begin{itemize}
+		\item A \textit{reverse process} of abstraction in which we suppress the differences among the several entity types, identify their common features, and \textbf{generalize} them into a single \textbf{superclass}.
+		\item the Generalization process can be viewed as being functionally the inverse of the specialization process.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Constraints and Characteristics of Specialization and Generalization Hierarchies}
+
+\begin{enumerate}
+	\item \textbf{Constraints on Specialization and Generalization}
+	\begin{itemize}
+		\item In some specializations we can determine exactly the entities that will become members of each subclass by placing a condition on the value of some attribute of the superclass. Such classes are called \textbf{predicate-defined} (or \textbf{condition-defined}) subclasses.
+		\item If \textit{all} subclasses in a specialization have their membership condition on the \textit{same} attribute of the superclass, the specialization itself is called an \textbf{attribute-defined specialization}, and the attribute is called \textbf{defining attribute} of the specialization.
+		\item When we do not have a condition for determining membership in a subclass, the subclass is called \textbf{user-defined}.
+		\item \textbf{Disjointness constraint: } 
+		\begin{itemize}
+			\item It specify that the subclass of the specialization must be disjoint sets.
+			\item This means that an entity can be a member of at \textit{most} one of the subclasses of the specialization.
+			\item A specialization that is attribute-defined implies the disjointness constraints. (if the attribute used to define the membership predicate is single-valued).
+			\item The \textbf{d} in the circle stands for \textit{disjoint}, the \textbf{d} notation also applies to user-defined subclasses of a specialization that must be disjoint. 
+		\end{itemize}
+		\item \textbf{Overlapping constraint: } 
+		\begin{itemize}
+			\item the same(real-world) entity may be a member of more than one subclass of the specialization.
+			\item The \textbf{o} notation is used to present overlapping.
+		\end{itemize}
+
+		\item \textbf{Completeness} (or \textbf{totalness} constraint):
+		\begin{itemize}
+			\item A \textbf{total specialization} constraint specifies that \textit{every entity} in the superclass must be a member of at least one subclass in the specialization.
+			\item A \textbf{partial specialization} constraint allows an entity not to belong to any of the subclasses.
+			\item The disjointness and completeness constraints are \textit{independent}:
+			\begin{itemize}
+				\item Disjoint, total
+				\item Disjoint, partial
+				\item Overlapping, total
+				\item Overlapping, partial
+			\end{itemize}
+
+			\item A superclass that was identified through the \textit{generalization} process usually is \textbf{total}, because the superclass is \textit{derived from} the subclasses and hence only the entities that are in the subclasses.
+		\end{itemize}
+
+		\item For insertion and deletion rules to specialization (and generalization) as a consequence of the constraints should follow the rules:
+		\begin{itemize}
+			\item Deleting an entity from a superclass implies that it is automatically deleted from all the subclasses to which it belongs.
+			\item Inserting an entity in a superclass implies that the entity is \textbf{mandatorily} inserted in all \textit{predicate-defined} (or attribute defined) subclasses for which the entity satisfies the defining predicate.
+			\item Inserting an entity in a superclass of a \textit{total specialization} implies that the entity is madatorily inserted in at least one of the subclasses of the specialization
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Specialization and Generalization Hierarchies and Lattices}
+\begin{itemize}
+	\item A subclass itself may have further subclasses specified on it, forming a hierarchy or a lattice of specialization.
+	\item A \textbf{specialization hierarchy} has the constraint that every subclass participate \textbf{as a subclass} in \textit{only one class/subclass} relationship $\rightarrow$ Each subclass has only one parent, which \textbf{result} in a \textbf{tree structure} or \textbf{strict hierarchy}.
+	\item For a \textbf{specialization lattice}, a subclass can be a subclass in \textit{in more than} class/subclass relationship.
+	\item A subclass inherits the attributes not only of its direct superclass, but also of all its predecessor subclasses \textit{all the way to the root} of the hierarchy or lattice if necessary.
+	\item A \textbf{leaf node} is a class that has \textit{no subclasses of its own}.
+	\item A subclass with \textit{no more than one} superclass is called a \textbf{shared subclass} $\rightarrow$ This lead to the concept known as \textbf{multiple inheritance}
+	\item The existence of at least one shared subclass leads to a lattice (and hence to \textit{multiple inheritance}); if no shared subclasses existed, we would have a hierarchy rather than a lattice and only \textbf{single inheritance} would exist.
+	\item If an attribute (or relationship) originating in the \textit{same superclass} is inherited more than once via different paths in the lattice, then it should be included only once in the shared subclass.   
+\end{itemize}
+
+\subsection{Utilizing Specialization and Generalization in Refining Conceptual Schemas}
+\begin{itemize}
+	\item \textbf{top-down conceptual refinement} or \textbf{bottom-up conceptual refinement}
+\end{itemize}
+
+\subsection{Modeling of UNION Types Using Categories}
+
+\quotes{A subclass represent a collection of entities that is a subset of the UNION of entities from distinct entity types, that subclass is called a \textbf{union type} or \textbf{category}}
+
+\begin{enumerate}
+	\item A category has two or more superclass that may represent collections of entities from \textit{distinct entity types}, whereas other superclass/subclass relationships always have a single superclass.
+	\item (Read textbook) Differences between a lattice and a category.
+	\item (Read textbook) Difference between a generalization and a category.
+	\item A category can be \textbf{total} or \textbf{partial}:
+	\begin{itemize}
+		\item A total category holds the \textit{union} of all entities in its superclass.
+		\item A partial category can hold the \textit{subset of the union}.
+	\end{itemize}
+\end{enumerate}
+
+\begin{center}
+	End
+\end{center}
+\pagebreak
+
+%------------------------------------------------------------------%
+
+\section*{Chapter 5: The Relational Data Model and Relational Database Constraints}
+
+\begin{itemize}
+	\item The relational model was first introduced by Ted Codd of IBM Research in 1970 in a classic paper.
+	\item The model uses the concept of a \textit{mathematical relation} - which looks somewhat like a table of values.
+	\item The first commercial implementations of the relational model became available in the early 1980s, such as the SQL/DS system on the MVS operating system by IBM and the Oracle DBMS. 
+\end{itemize}
+
+\subsection{Relational Model Concepts}
+
+\begin{itemize}
+	\item The relational model represents the database as a collection of \textit{relations}.
+	\item When a relation is thought of as a \textbf{table} of values, each row in the table represents a collection of related data values.
+	\begin{itemize}
+		\item A row represents a fact that typically corresponds to a real-world entity or relationship.
+		\item The table name and column names are used to help to interpret the meaning of the values in each row.
+	\end{itemize}
+	\item in the formal relational model terminology, a row is called \textit{tuple}, a column header is called an \textit{attribute}, and the table is called a\textit{relation}.
+	\item The data type describing the types of values that can appear in each column is represented by a \textit{domain} of possible values.
+\end{itemize}  
+
+\begin{enumerate}
+	\item \textbf{Domains, Attributes, Tuples, and Relations}
+	\begin{itemize}
+		\item A \textbf{domain} D is set of atomic values. By \textbf{atomic} we mean that each value in the domain is indivisible as far as the formal relational model is concerned.
+		\item A domain is given a name, data type, and format.
+		\item A \textbf{relational schema} R, denoted by $R(A_1, A_2, \ldots, A_n)$, is made up of a relation name R and a list of attributes, $A_1, A_2, \ldots, A_n$.
+		\begin{itemize}
+			\item Each \textbf{attribute} $A_i$ is the name of a role played by some domain D in the relation schema R.
+			\item D is called the \textbf{domain} of $A_{i}$ and is denoted by \textbf{dom($A_i$)}.
+			\item A relation schema is used to \textit{describe} a relation; R is called the \textbf{name} of this relation.
+			\item The \textbf{degree} (or \textbf{arity}) of a relation is the number of attributes n of its relation schema.
+		\end{itemize}
+		\item For example, A relation of degree seven, which store information about university students, would contain seven attributes describing each student as follow: \\
+		\begin{center}
+		STUDENT(Name, Ssn,\texttt{Home\_phone}, Address, \texttt{Office\_phone}, Age, Gpa)
+		\end{center}
+		\item Using data type of each attribute, the definition is sometimes written as:
+		\begin{center}
+		STUDENT(Name: string, Ssn: string, \texttt{Home\_phone}: string, Address: string, \texttt{Office\_phone}: string, Age: integer, Gpa: real)
+		\end{center}
+
+		\item We can specify the domain for STUDENT: dom(Gpa) = \texttt{Grade\_point\_averages}.
+		\item A \textbf{relation} (or \textbf{relation state}) \textit{r} of the relation schema R$(A_1, A_2, \ldots, A_n)$ also denoted by r(R), is a set of n-tuples r = ${t_1, t_2, \ldots, t_m}$.
+		\item Each n-\textbf{tuple} t is an ordered list of n values t $=<v_1, v_2, \ldots, v_n>$, where each value $v_i$, $1 \le i \ge n$, is an element of dom($A_{i}$) or is a special NULL value.
+		\item The \textit{i}th value in tuple t, which corresponds to the attribute $A_{i}$, is referred to as t$[A_{i}]$ or t.$A_{i}$ (or \textit{t[i]} if we use the positional notation).
+		\item A \textbf{relation intension} is used for schema R and the term \textbf{relation extension} is used for a relation state r(R).
+		\item \textbf{Cardinality} is the number of \textit{tuples} in the table.
+		\item It is possible for several attributes to \textit{have the same domain}. The attribute names indicate different \textbf{roles}, or interpretations, for the domain.
+	\end{itemize}
+
+	\item \textbf{Characteristic of Relations}
+	\begin{itemize}
+		\item \textbf{Ordering of Tuples in a Relation: }
+		\begin{itemize}
+			\item A relation is defined as a \textit{set of tuples}; elements of a set have \textit{no order} among them; hence tuples in a relation do not have any particular order.
+			\item A relation is not sensitive to the ordering of tuples. When we display a relation as a table, the rows are displayed in a certain order. 
+		\end{itemize}
+
+		\item \textbf{Ordering of Values within Tuple and an Alternative Definition of a Relation: }
+		\begin{itemize}
+			\item An \textbf{alternative definition} of a relation can be given, making the ordering of values in a tuple unnecessary. In this definition, a relation schema R = ${A_1, A_2,\ldots, A_n}$ is a set of attributes (instead of an ordered list of attributes), and a relation state r(R) is a finite set of mappings r = ${t_1, t_2,\ldots, t_m}$, where each tuple ti is a mapping from R to D, and D is the union (denoted by $\cup$) of the attribute domains; that is, $D = dom(A_1) \cup dom(A_2) \cup \ldots \cup dom(A_n)$. In this definition, $t[A_i]$ must be in $dom(A_i)$ for $1 \le i \le n$ for each mapping t in r. Each mapping $t_i$ is called a tuple.
+			\item According to this definition of tuple as a mapping, a tuple can be considered as a set of (<attribute>, <value>) pairs, where each pair gives the value of the mapping from an attribute $A_i$ to a value $v_i$ from $dom(A_i)$.
+			\item The ordering of attributes is not important, because the attribute name appears with its value.
+			\item When the attribute name and value are included together in a tuple, it is known as \textbf{self-describing data}, because the description of each value (attribute name. is included in the tuple.
+		\end{itemize}
+
+		\item \textbf{Values and NULLs in the Tuples: }
+		\begin{itemize}
+			\item Each value in a tuple is an \textbf{atomic} value.
+			\item Composite and multivalued attributes are not allowed. In relational model, multivalued attributes must be represented by separate relations, and composite attributes are represented only by their simple component attributes.
+			\item \textbf{flat relational model}, must of theory behind the relational model was developed with this assumption in mind, which is called \textbf{first normal form} assumption.
+			\item In general, we can have several meanings for NULL values, such as \textbf{value unknown, value} exists but is \textbf{no available}, or \textbf{attribute does not apply} to this tuple (also known as \textbf{value undefined}).
+		\end{itemize}
+
+		\item \textbf{Interpretation (Meaning) of a Relation}
+		\begin{itemize}
+			\item The relation schema can be interpreted as a declaration or a type of \textbf{assertion}.
+			\item Each tuple in the relation can then be interpreted as a \textbf{fact} or a particular instance of the assertion.
+			\item Some relations may represent facts about \textit{entities}, whereas other relations may represent facts about \textit{relationships}.
+			\item An alternative interpretation of a relation schema is as a \textbf{predicate}, the values in each tuple are interpreted as values that \textit{satisfy} the predicate.
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Relational Model Notation}
+	\begin{itemize}
+		\item A relation schema R of degree \textit{n} is denoted by $R(A_1, A_2, \ldots, A_n)$.
+		\item The uppercase letters Q, R, S denote relation names.
+		\item The lowercase letters q, r, s denote relation states.
+		\item The letters t, u, v denote tuples.
+		\item The name of a relation schema indicates the current set of tuples in that relation - the \textit{current relation state} - refers \textit{only} to the relation schema.
+		\item An attribute A can be qualified with the relation name R to which it belongs by using dot notation. \\
+		For example: STUDENT.Name or STUDENT.Age
+		\item All attribute names in a \textit{particular relation} must be distinct.
+		\item An n-tuple t in a relation r(R) is denoted by $t = <v_1, v_2,\ldots , v_n>$, where $v_i$ is the value corresponding to attribute $A_i$. 
+		\begin{itemize}
+			\item Both $t[A_i]$ and $t.A_i$ (and sometimes t[i]) refer to the value $v_i$ in t for attribute $A_i$.
+			\item Both $t[A_u, A_w,\ldots , A_z]$ and $t.(A_u, A_w,\ldots, A_z)$, where $A_u, A_w,\ldots, A_z$ is a list of attributes from R, refer to the subtuple of values $<v_u, v_w,\ldots, v_z>$ from t corresponding to the attributes specified in the list.
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Relational Model Constraints and Relational Database Schemas}
+
+\begin{itemize}
+	\item Constraints on databases can be generally be divided into three main categories:
+	\begin{itemize}
+		\item Constraints that are inherent in the data model $\rightarrow$ \textbf{inherent model-based constraints} or \textbf{implicit constraints}
+		\item Constraints that can be directly expressed in the schemas of the data model, typically by specifying them in the DDL (data definition language) $\rightarrow$ \textbf{schema-based constraints} or \textbf{explicit constraints}.
+		\item Constraints that \textit{cannot} be directly expressed in the schemas of the data model, and hence must be expressed and enforced by the application programs or in some other way. $\rightarrow$ \textbf{application-based} or \textbf{semantic constraints} or \textbf{business constraints}.
+
+		\item The characteristics of relations are the inherent constraints of the relational model.
+		\item Another important category of constraints is \textit{data dependencies}, which include \textit{functional dependencies} and \textit{multivalued dependencies}.
+	\end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+	\item \textbf{Domain Constraints}
+	\begin{itemize}
+		\item Domain constraints specify that within each tuple, the value of each attribute A must be an atomic value from the domain dom(A).
+	\end{itemize}
+
+	\item \textbf{Key constraints and Constraints on NULL Values}
+	\begin{itemize}
+		\item In the formal relation model, a \textit{relation} is defined as a set of \textit{tuples} - All elements of a set are distinct $\rightarrow$ all tuples in a relation must be also distinct.
+		\begin{itemize}
+			\item A \textbf{superkey} specifies that a \textit{uniqueness constraints} that no more two distinct tuples in any state \textit{r} of R can have the same value set of attributes.
+			\item Each relation has at least one default superkey - the set of all its attributes.
+			\item A superkey can have redundant attributes
+			\item A \textbf{key} k of a relation schema R is a superkey of R with the additional property that removing any attribute A from K leaves a set of attribute \textit{K'} that is not a superkey of R any more. A key satisfies two properties:
+			\begin{itemize}
+				\item Two distinct tuples in any state of the relation cannot have identical values for (all) the attributes in the key.
+				\item It is a \textit{minimal superkey} - that is, a superkey from which we cannot remove any attributes and still have the uniqueness constraints hold. This \textit{minimality} property is required for a key but is optional for a superkey.
+			\end{itemize}
+
+			\item A key with multiple attributes must require \textit{all} its attributes together to have the uniqueness property.
+			\item The value of key attribute can be used to identify uniquely each tuple in the relation.
+			\item A set of attributes constituting a key is a property of the schema; it is constraints that should hold on every valid relation state of the schema.
+			\item A key is determined from the meaning of the attributes, and the property is \textit{time-invariant}.
+			\item A relation schema may have more than one key, each of the keys is called a \textbf{candidate key}. It is common to designate one of the candidate keys as the \textbf{primary key} of the relation. $\rightarrow$ the candidate key whose values are used to \textit{identify} tuples in the relation.
+			\item Attributes that form the primary key of a relation schema are underlined.
+			\item The other candidate keys that are not chosen as the primary key are designate as \textbf{unique keys} and are not underlined. 
+		\end{itemize}
+			
+	\end{itemize}
+
+	\item \textbf{Relational Databases and Relational Database Schemas}
+	\begin{itemize}
+		\item A \textbf{relational database schema} S is set of relation schemas $S = {R_1, R_2,\ldots, R_m}$ and a set of \textbf{integrity constraints} IC.
+		\item A \textbf{relational database state} DB of S is a set of relation states $DB = {r_1, r_2,\ldots, r_m}$ such that each $r_i$ is a state of $R_i$, and such that the $r_i$ relation states satisfy the integrity constraints specified in IC. 
+		\item A database state does not obey the integrity constraints is called \textbf{not valid} while a state that satisfies all the constraints in the defined set of integrity constraints IC is called a \textbf{valid state}.
+		\item Attributes that represent the same real-world concept may or may not have identical names in different relations. However we could have two attributes that share the same name but represent different real-world concepts.
+		\item When we represent an attribute, it would have \textit{identical attribute} names in all relations. This create problems when the same new-world concept is used in different roles (meanings) in the same relation. $\rightarrow$ require a distinct attribute names to distinguish their meaning.
+		\item Each relational DBMS must have a data definition language (DDL) for defining relational database schema.
+		\item Integrity constraints are specified on a database schema and are expected to hold on every \textit{valid database state} of that schema. 
+	\end{itemize}
+
+	\item \textbf{Entity Integrity, Referential Integrity, and Foreign Keys}
+	\begin{itemize}
+		\item The \textbf{entity integrity constraints} states that no primary key value can be NULL. (primary key value is used to identify individual tuples in a relation).
+		\item Key constraints and entity integrity constraints are specified on individual relations.
+		\item The \textbf{referential integrity constraints} is specified between two relations and is used to maintain the consistency among tuples in the two relation.
+	\end{itemize}
+\end{enumerate}
 
 
 
 
 \end{document}
+
+
+
+
+
+
