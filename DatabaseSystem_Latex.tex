@@ -837,6 +837,60 @@
 	End
 \end{center}
 
+\pagebreak
+
+\section*{Chapter 6: Basic SQL}
+\begin{itemize}
+	\item The name SQL is presently expanded as \textbf{Structural Query Language}. (or SEQUEL: Structured English QUEry Language)
+	\item SQL was designed and implemented at IBM Research as the interface for an experimental relational database system called SYSTEM R.
+	\item SQL is now the standard language for commercial relational DBMSs.
+	\item SQL is a comprehensive database language; It has statements for data definitions, queries, and updates. (DDL and DML).
+	\item It has facilities for defining views on the database, specifying security and authorization for defining integrity constraints, and specifying transaction controls.
+	\item It has rules for embedding SQL statement into a general-purpose programming language such as Java/C++.
+\end{itemize}
+
+\subsection{SQL Data Definition and Data Types}
+
+\begin{itemize}
+	\item SQL uses the terms \textbf{table}, \textbf{row}, and \textbf{column} for the formal relational model terms \textit{relation}, \textit{tuple}, and \textit{attribute}.
+	\item The main SQL command for data definition is the CREATE statement, which can be used to create schemas, tables, types, and domains as well as views, assertion, and triggers. 	
+\end{itemize}
+
+\begin{enumerate}
+	\item \textbf{Schema and Catalog Concepts in SQL}
+	\begin{itemize}
+		\item An \textbf{SQL Schema} is identified by a \textbf{schema name} and includes an \textbf{authorization identifier} to indicate the user or a account who owns the schema, as well as \textbf{descriptor} for \textit{each element} in the schema.
+		\item \textbf{Schema elements} include tables, types, constraints, views, domains and other constructs (such as authorization grants) that describe schema.
+		\item A schema is created via the CREATE SCHEMA statement, which can include all the schema element's definition, or the schema can be assigned a name and authorization identifier and the elements can be defined later.
+		\item Each statement in SQL ends with a semicolon (`;').
+		\item The following statement called COMPANY owned by the user with authorized identifier `Jsmith'.
+		\begin{center}
+			\textbf{CREATE SCHEMA} COMPANY \textbf{AUTHORIZATION} `Jsmith';
+		\end{center}
+		\item The privilege to create schemas, tables, and other constructs must be explicitly granted to the relevant user accounts by the system administrator or a DBA (DataBase Administrator)
+		\item SQl uses concept \textbf{catalog} - a collection of schemas.
+		\item A catalog always contains a special schema $INFORMATION_SCHEMA$, which provides information on all the schemas in the catalog and all the element descriptor in these schemas.
+		\item Integrity constraints such as referential integrity can be defined between relations only if they exist in schemas within the same catalog.
+		\item Schemas within the same catalog can also share certain elements, such as type and domain definitions.
+	\end{itemize}
+
+	\item \textbf{The CREATE TABLE Command in SQL}
+	\begin{itemize}
+		\item The \textbf{CREATE TABLE} command is used to specify a new relation by giving it a name and specifying its attributes and initial constraints.
+		\item The attributes are specified first, and each attribute is given a name, a data type to specify its domain of values, and possibly attribute constraints, such as NOT NULL.
+		\item The key, entity integrity, and referential integrity constraints can be specified within CREATE TABLE statement after the attributes are declared, or they can be added later using the ALTER TABLE command;
+		\item For instance, to create a EMPLOYEE relation explicitly:
+		\begin{center}
+			\textbf{CREATE TABLE} EMPLOYEE
+		\end{center}
+		\item Or, the SQL schema in which the relations are declared is implicitly specified in the environment in which the CREATE TABLE statements are executed. Example:
+		\begin{center}
+			\textbf{CREATE TABLE} COMPANY.EMPLOYEE
+		\end{center}
+		\item The relations declared through CREATE TABLE statements are called \textbf{base table} (or base relations); this means that the table and its rows are actually created.
+	\end{itemize}
+\end{enumerate}
+
 
 
 
