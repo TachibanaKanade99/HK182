@@ -40,7 +40,7 @@ int find_sub_string(const char *str, const char *sub){
             len = len + 1;
 
             if (i == sub_length - 1 || i == str_length - 1){
-                //reach the end of string or substring:
+                //stop when reach the end of string or substring:
                 return 1;
             }
         }
@@ -50,8 +50,7 @@ int find_sub_string(const char *str, const char *sub){
             if (len != 0){
                 len = prefArr[len - 1];
                 i = i - 1;
-            }
-            
+            }  
         }
     }
     return -1;
