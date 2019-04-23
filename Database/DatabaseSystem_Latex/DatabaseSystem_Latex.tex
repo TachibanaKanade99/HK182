@@ -22,7 +22,18 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{mdframed}
+\usepackage{fancyhdr,fancybox}
+\usepackage{lastpage}
 \usepackage[utf8]{vietnam}\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Database System}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
 
 \newcommand{\quotes}[1]{``#1''}
 \usepackage{minted}
@@ -889,6 +900,99 @@
 		\end{center}
 		\item The relations declared through CREATE TABLE statements are called \textbf{base table} (or base relations); this means that the table and its rows are actually created.
 	\end{itemize}
+\end{enumerate}
+
+\pagebreak
+\section*{Relational Database Design by ER - EER-to-Relational Mapping}
+
+\begin{enumerate}
+	\item Mapping of Regular Entity Types:
+	\begin{itemize}
+		\item For each regular (strong) entity type E in the ER schema, create a relation R that includes all the simple attributes of E.
+		\item Include only the simple component attributes of a \textbf{composite} attribute.
+		\item Choose one of the key attributes of E as the primary key for R. If the chosen key of E is a composite, then the \textbf{set} of simple attribute that form it will together form the primary key of R.
+		\item If multiple keys were identified for E during the conceptual design, the information describing the attributes that form each additional key is kept in order to specify additional (unique) keys of relation R.
+	\end{itemize}
+
+	\item Mapping of Weak Entity Types:
+	\begin{itemize}
+		\item For each weak entity type W in the ER schema with owner entity type E, create a relation R and include all simple attributes (or simple components of composite attributes) of W as attributes of R.
+		\item The primary key attribute(s) of the relation(s) that correspond to the owner entity type(s) are included as foreign key of R, this \textbf{takes} care of mapping the idenifying relationship type of W.
+		\item The primary key of R is the \textbf{combination} of the primary key(s) of the owner(s) and the partial key of the weak entity type W.
+		\item If there is a weak entity type E2, whose owner is also a weak entity type E1, then E1 should be mapped first before E2 to determine its primary key first.
+	\end{itemize}
+
+	\item Mapping of Binary 1:1 Relationship Types:
+	\begin{itemize}
+		\item For each binary 1:1 relationship type R in the ER schema, identify the relation S and T that correspond to the entity types participating in R.
+		\item There are 3 possible approaches to illustrate it: 
+		\begin{itemize}
+			\item Foreign key approach:
+			\begin{itemize}
+				\item Choose one relation S and include the primary key of T as the foreign key in S.
+				\item It is important to choose an entity type with \textit{total participation} in R in the role of S.
+				\item Include all the simple attributes (or simple components of composite attributes) of the 1:1 relationship type R as attributes of S.
+				\item It is possible to include the primary key of S as a forein key in T instead. However, it will have \textbf{NULL} value for T tuples that does not participating in R relationship type with S $\rightarrow$ Create redundancy and incurs a penalty for consistency maintenance. 
+			\end{itemize}
+
+			\item Merged relation approach:
+			\begin{itemize}
+				\item An alternating mapping of a 1:1 relationship type is to merge the two entity types and the relationship into a single relation.
+				\item This is possible when \textit{both participation} are \textit{total}, as this would indicate that the two tables have the same number of tuples at all times. 
+			\end{itemize}
+
+			\item Cross-reference or relationship relation approach:
+			\begin{itemize}
+				\item Set up the third relation R for the purpose of cross-referencing the primary keys of the two relations S and T reprensenting the entity types.
+				\item The third relation R is called \textbf{a relationship relation} (or sometimes called a \textbf{lookup table}).
+				\item The third relation R includes the primary key attributes of S and T as foreign keys to S and T. The primary key of R will be one of the two foreign keys, and the other will be a unique key of R.
+				\item One drawback is having an extra relation, and requiring extra join operations when combining related tuples from the tables.
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+
+	\item Mapping of Binary 1:N Relationship Types: 2 approaches for mapping this type of relationship
+		\begin{itemize}
+			\item The foreign key approach
+			\begin{itemize}
+				\item For each regular binary 1:N relationship type R, identify the relation S that represents the participating entity type at the \textit{N}-side of the relationship type.
+				\item Include the primary key of T as the foreign key of S.
+				\item Include any simple attributes (or simple components of composite attributes) of the 1:N relationship type R as attributes of S.
+			\end{itemize}
+
+			\item The relationship relation approach
+				\begin{itemize}
+					\item We create a separate relation R whose attributes are the primary keys of S and T, which will also be the foreign keys to S and T. The primary key of R is the same as the primary key of S.
+				\end{itemize}
+		\end{itemize}
+
+	\item Mapping of Binary M:N Relationship Types:
+		\begin{itemize}
+			\item To illustrate this mapping type we use the \textbf{relationship relation} (cross-reference) option.
+			\item For each binary M:N relationship type R, create a new relation S to represent R.
+			\item Include the primary keys of the relations that represent the participating entity types as  foreign key attributes in S.
+			\item The \textit{combination} of the primary keys that represent the participating entity types will form the primary key of S.
+			\item Include any simple attributes of the M:N relationship type (or simple components of composite attributes) as attributes of S.
+		\end{itemize}
+
+	\item Mapping of Multivalued Attributes 
+		\begin{itemize}
+			\item For each multivalued attribute A, create a relation R.
+			\item R will include an attribute correspond to A, plus the primary key attribute K of the relation that represents the entity type or relationship type that has A as a multivalued attribute - as foreign key of R.
+			\item If the multivalued attribute A is composite we will include its simple components.
+			\item The primary key of R is the combination of simple attributes in A and the primary key attribute K.
+			\item In some cases, when a multivalued attribute is composite, only some of the component attributes are required to be part of the key of R.
+		\end{itemize}
+
+	\item Mapping of N-ary Relationship Types
+		\begin{itemize}
+			\item For each n-ary relationship type R, where n > 2, create a new relationship relation S to represent R.
+			\item Include the primary keys of the relations that represent the participating entity types - as foreign key attributes.
+			\item Include any simple atributes of the n-ary relationship type (or simple components of composite attributes) as attributes of S.
+			\item The primary key of S is usually a combination of all the foreign keys that reference the relations representing the participating entity types.
+			\item If the cardinality constraints on any of the entity types E participating in R is 1, then the primary key of S should not include the foreign key attribute that references the relation E' corresponding to E. 
+		\end{itemize}
+
 \end{enumerate}
 
 
