@@ -5,6 +5,7 @@
 
 int read_line(char *str){
     while (fgets(str, 100,  stdin)){
+        //get 1 line from stdin into str:
         int i = strlen(str) - 1;
         if (str[i] == '\n'){
             str[i] = '\0';
