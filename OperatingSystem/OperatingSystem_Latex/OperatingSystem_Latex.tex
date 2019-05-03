@@ -19,6 +19,10 @@
 \def\vw{\mathbf{w}}
 \def\vs{\mathbf{s}}
 
+\usepackage[lf]{Baskervaldx} % lining figures
+\usepackage[bigdelims,vvarbb]{newtxmath} % math italic letters from Nimbus Roman
+\usepackage[cal=boondoxo]{mathalfa} % mathcal from STIX, unslanted a bit
+\renewcommand*\oldstylenums[1]{\textosf{#1}}
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{mdframed}
@@ -102,6 +106,106 @@
 		\item Some nonvolatile disks are electronic disk, NVRAM (DRAM with battery backup power).
 	\end{itemize}
 
+\end{enumerate}
+
+\pagebreak
+\section*{Chapter 3: Process}
+
+\subsection*{Process Concept}
+\begin{enumerate}
+	\item \textbf{The Process}
+	\begin{itemize}
+		\item The process:
+		\begin{itemize}
+			\item A process is a program in execution.
+			\item The status of the current activity of a process is represented by the value of the \textbf{program counter} and the contents of the processor's register. 
+			\item The memory layout of a process is typically divided into multiple sections
+			\begin{itemize}
+				\item \textbf{Text section:} - the executable code 
+				\item \textbf{Data section:} - global variables
+				\item \textbf{Heap section:} - memory that is dynamically allocated duirng program run time.
+				\item \textbf{Stack section:} - temporary data storage when invoking functions (parameters, return val, ... etc).
+				\includegraphics[width=5cm]{memory_layout.png}
+				\bigbreak
+			\end{itemize}
+
+			\item The size of text and data section is \textbf{fixed}, while the stack and heap section can shrink and grow \textbf{dynamically} during program execution.
+			\item the stack and heap sections grow \textbf{toward} one another, the operating system must ensure they do not \textbf{overlap} one another.
+			\item A program itself is not a process, which is called \textbf{passive entity} while process is called \textbf{active} entity with a program counter specifying the next instruction to execute and a set of associated resources.
+			\item A program become a process when when an executable file is loaded into a memory.
+			\item Two processes may be associated with the same program, they are nevertheless considered two separate execution sequences.
+			\item A process can itself be an execution environment for another code. For instance, the JVM   
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Process State}
+	\begin{itemize}
+		\item The state of the process is defined in part of the current activity of that process.
+		\begin{itemize}
+			\item \textbf{New}: The process is being created.
+			\item \textbf{Running}: Instructions are being executed.
+			\item \textbf{Waiting}: The process is waiting for some events to occur (such as I/O completion or reception of a signal).
+			\item \textbf{Ready}: The process is waiting to be assigned to a processor.
+			\item \textbf{Terminated}: The process has finished execution.
+		\end{itemize}
+
+		\includegraphics[scale=0.6]{Process_state.png}
+		\\
+		\bigbreak
+
+		\item Only \textbf{one} process can be \textit{running} on any processor core at any instant. Many process may be \textit{ready} and \textit{waiting}. 
+	\end{itemize}
+
+	\item \textbf{Process Control Block}
+	\begin{itemize}
+		\item Each process is represented in the operating system by a \textbf{process control block (PCB)} or \textbf{task control block}.
+		\begin{itemize}
+			\item Process state
+			\item Program counter
+			\item CPU register
+			\item CPU-scheduling information
+			\item Memory-management information
+			\item Accounting information
+			\item I/O status information
+		\end{itemize}
+	\end{itemize}
+
+	\item \textbf{Threads}
+	\begin{itemize}
+		\item A process is a program that performs a single \textbf{thread} of execution.
+	\end{itemize}
+\end{enumerate}
+
+\subsection*{Process Scheduling}
+
+\begin{itemize}
+	\item The objective of multiprogramming is to have some process running at all the times so as to maximize CPU utilization.
+	\item The objective for time sharing is to switch a CPU core among processes so frequently that users can interact with each program while it is running.
+	\item To meet those objective, \textbf{process scheduler} is used to select an available process for program execution on a core.
+	\item The number of processes currently in memory is known as the \textbf{degree of multiprogramming}.
+	\item Most processes can be described as either I/O bound or CPU bound.
+	\begin{itemize}
+		\item An \textbf{I/O bound process} is one that spends more of its time doing I/O than it spends doing computations.
+		\item A \textbf{CPU-bound process} generates I/O requests infrequently, using more of its time doing computations. 
+	\end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+	\item \textbf{Scheduling Queues}
+	\begin{itemize}
+		\item As a processes enter the system, they are put into the \textbf{ready queue}, where they are ready and waiting to execute on a CPU's core. This queue is a linked-list.
+		\item When a process is allocated a CPU core, it executes for a while and eventually terminates, is interrupted, or waits for the occurrence of a particulat event - I/O request. Therefore, the process has to wait for the completion of I/O - which is placed in a \textbf{wait queue}. 
+	\end{itemize}
+
+	\includegraphics[scale=0.6]{Queueing-diagram.png}
+	\\
+	\bigbreak
+
+	\item \textbf{CPU Scheduling}
+	\begin{itemize}
+		\item The role of \textbf{CPU scheduler} is to select from among the processes that are in the ready queue and allocate a CPU core to one of them.
+		\item The scheduler must select a new process for the CPU frequently.
+	\end{itemize}
 \end{enumerate}
 
 \end{document}
