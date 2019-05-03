@@ -903,7 +903,7 @@
 \end{enumerate}
 
 \pagebreak
-\section*{Relational Database Design by ER - EER-to-Relational Mapping}
+\section*{Relational Database Design by ER/EER-to-Relational Mapping}
 
 \begin{enumerate}
 	\item Mapping of Regular Entity Types:
@@ -995,7 +995,44 @@
 
 \end{enumerate}
 
+\section*{Mapping EER Model Constructs to Relations}
 
+\begin{enumerate}
+	\item Mapping of Specialization or Generalization: 
+	\begin{itemize}
+		\item Options for Mapping Specialization or Generalization:
+		\begin{itemize}
+			\item Convert each specialization with m subclasses ${S1, S2, \dots, Sn}$ and (generalized) superclass C, where attribtutes of C are ${k, a1, a2, \dots, an}$ and k is the (primary) key, into relation schemas using one of the following options:
+			\begin{itemize}
+				\item Multiple relations - superclasses and subclasses:
+				\begin{itemize}
+					\item Create a relation for C with all the attribute in C and the primary key is k.
+					\item Create relation for each subclass with the attribute is k + attribute of each subclass where k is the primary key.
+					\item This option works for any specialization (total or partial, disjoint or overlapping). 
+				\end{itemize}
+
+				\item Multiple relations - subclass relations only:
+				\begin{itemize}
+					\item Create a relation for each subclass with the attributes are the attributes of each subclass and the attributes of superclass C where k is the primary key.
+					\item This option works only for a specialization whose subclasses are \textit{total} (every entity in the superclass must belong to (at least) one of the subclass).
+					\item Additionally, it is recommended if the specialization has the \textit{disjointness constraints}, else if the specialization is overlapping, the same entity may be duplicated in several relations.
+				\end{itemize}
+
+				\item Single relation with one type attribute:
+				\begin{itemize}
+					\item Create a single relation with attributes of superclass C and \textit{every attributes} of each subclass and attribute t called \textbf{type} indicates the subclass to which each tuple belongs to , k is primary key of the relation.
+					\item This option works only for a specialization whose subclasses are \textit{disjoint}, the drawback is that this relations can generate many NULL values is many specific attributes exist in the subclass. 
+				\end{itemize}
+
+				\item Single relation with multiple type attributes:
+				\begin{itemize}
+					\item Create a single relation schema L with attributes of each subclass and subperclass with each flags indicate the following subclass.
+					\item This option works for a specialization whose subclasses are \textit{overlapping} 
+				\end{itemize}
+			\end{itemize}  
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
 
 
 
