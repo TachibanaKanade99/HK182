@@ -1,0 +1,124 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=1.8cm,bottom=2.8cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+%Graphics packages:
+\usepackage{graphicx, graphics}
+\usepackage{tabularx, caption}
+\usepackage{multirow, multicol}
+\usepackage{setspace, tikz}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{vietnam}
+
+\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+
+
+%fancyhdr:
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25, 15)(0, 0)
+    \put(0, -8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+   \end{picture}&
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, VNU-HCM}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+
+\fancyhead[R]{
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf
+    \end{tabular}
+}
+
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Operating System (Spring 2019)}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY, VNU HCM \\
+            FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+        \end{center}
+
+        \vspace{1cm}
+
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=3cm]{hcmut.png}
+            \end{center}
+        \end{figure}
+
+        \vspace{1cm}
+
+        \begin{center}
+            \begin{tabular}{c}
+                \multicolumn{1}{l}{\textbf{\LARGE OPERATING SYSTEM}} \\
+                ~~\\
+                \hline
+                \\
+                \multicolumn{1}{l}{\LARGE Lab 4: Process (Part 2/2)} \\
+                \\
+                \hline
+                \\
+                \hspace{5cm} Pham Minh Tuan - MSSV: 1752595
+            \end{tabular}
+        \end{center}
+    \end{titlepage}
+
+%Newpage:
+\newpage
+
+\section{Problem 2:} Write a short essay which summarizing the knowledge of process’s data segment to answer for these questions:
+
+\begin{itemize}
+    \item In which cases we should use \textit{\texttt{aligned\_malloc()}} instead of standard \textit{malloc} ?
+    \item How can we increase the size of heap in a running process ?
+\end{itemize}
+
+    We use \textit{\texttt{aligned\_malloc()}} to allocate memory to aligned directory that is the certain bit boundary. Since the standard \texttt{malloc} will return the suitable alignment for any standard types depending on the OS architecture, it sometimes not useful whenever we allocate too much memory space or too low one. So the \textit{\texttt{aligned\_malloc()}} will solve that problem. If we know the size and the aligned bits boundary, the program can run faster and efficiency. For UNIX system, the \texttt{malloc} is implemented by \textbf{glibc}, the reason we need to use \textit{\texttt{aligned\_malloc()}} will be more clear: \\
+
+    \indent \textit{The address of a block returned by \texttt{malloc} or \texttt{realloc} in GNU systems is always a multiple of eight (or sixteen on 64-bit systems). If you need a block whose address is a multiple of a higher power of two than that, use \textit{\texttt{aligned\_malloc()}} or \textit{\texttt{posix\_memalign}}} \\
+
+    \indent We can increase the size of heap whenever we call \textit{malloc()}. For UNIX system, with the \textit{brk()} and \textit{sbrk()}, we can adjust the program break as long as the virtual memory allocated enough for it. We typically don't need to call \textit{brk()} everytime if \textit{malloc} provide enough memory otherwise we can call \textit{setbrk()} system call. The limit of the size of virtual memory of the system
+
+\bigbreak
+
+
+
+
+\end{document}
