@@ -9,6 +9,8 @@
 #include <linux/mm.h>
 
 #include <linux/sched.h>
+#include <linux/sched.h/signal.h>
+#include <linux/delay.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("TUAN");
