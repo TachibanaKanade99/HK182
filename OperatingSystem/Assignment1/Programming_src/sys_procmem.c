@@ -1,5 +1,5 @@
 #include <linux/linkage.h>
-#include <linux/sched/signal.h>
+#include <linux/signal.h>
 #include <linux/kernel.h> //include KERN_INFO
 #include <linux/mm.h>
 #include <linux/uaccess.h> //include copy_to_user
@@ -33,13 +33,13 @@ asmlinkage long sys_procmem(int pid, struct proc_segs *info){
                 user.end_code = task->mm->end_code;
                 user.start_data = task->mm->start_data;
                 user.end_data = task->mm->end_data;
-                user.start_heap = task->mm->start_heap;
-                user.end_heap = task->mm->end_heap;
+                user.start_heap = task->mm->start_brk;
+                user.end_heap = task->mm->brk;
                 user.start_stack = task->mm->start_stack;
 
                 int result = copy_to_user(info, &user, sizeof(user));
 
-                if (res == 0)
+                if (result == 0)
                 { 
                     printk("Copy to user successfull!\n");
                 }
