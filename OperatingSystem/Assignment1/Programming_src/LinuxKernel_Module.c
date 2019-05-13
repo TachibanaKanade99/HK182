@@ -10,17 +10,41 @@
 
 #include <linux/sched.h>
 
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("TUAN");
+
 static int pid = 1;
 static int __init procmem_init(void){
     struct task_struct *task;
     printk(KERN_INFO "Starting kernel module!\n");
 
     // TODO: find task_struct that is associated with the input process pid
-    // Hint: use the for_each_process() function
+    // Hint: use the for_each_process() function:
+    for_each_process(task){
+        printk("[%d] | [%s]\n", task->pid, task->comm);
+        msleep(10);
 
-    // TODO: show its memory layout
+        if (task->pid == pid){
+            printk("Student ID: 1752595\n");
 
-    return 0;
+            //check if mm is NULL or not:
+            if (task->mm != NULL){
+                printk(KERN_INFO "task->mm not null !\n");
+
+                // TODO: show its memory layout
+                printk("Code Segment start = [%ul]; end  = [%ul]\n", task->mm->start_code, task->mm->end_code);
+                printk("Data Segment start = [%ul]; end  = [%ul]\n", task->mm->start_data, task->mm->end_data);
+                printk("Stack Segment start = [%ul]\n", task->mm->start_stack);
+
+                return 0;
+            }
+
+            else if (p->active_mm == NULL){
+                printk(KERN_INFO "In the thread, using active_mm\n");
+            }
+        }
+    }
+    return -1;
 }
 
 static void __exit procmem_cleanup(void){
