@@ -4,12 +4,10 @@
 #include <linux/kernel.h> 
 // included for KERN_INFO
 #include <linux/init.h>
-
 // included for __init and __exit macros
-#include <linux/mm.h>
 
-#include <linux/sched.h>
-#include <linux/sched.h/signal.h>
+#include <linux/mm.h>
+#include <linux/sched/signal.h>
 #include <linux/delay.h>
 
 MODULE_LICENSE("GPL");
@@ -22,26 +20,30 @@ static int __init procmem_init(void){
 
     // TODO: find task_struct that is associated with the input process pid
     // Hint: use the for_each_process() function:
-    for_each_process(task){
+    for_each_process(task)
+    {
         printk("[%d] | [%s]\n", task->pid, task->comm);
         msleep(10);
 
-        if (task->pid == pid){
+        if (task->pid == pid)
+        {
             printk("Student ID: 1752595\n");
 
             //check if mm is NULL or not:
-            if (task->mm != NULL){
+            if (task->mm != NULL)
+            {
                 printk(KERN_INFO "task->mm not null !\n");
 
                 // TODO: show its memory layout
-                printk("Code Segment start = [%ul]; end  = [%ul]\n", task->mm->start_code, task->mm->end_code);
-                printk("Data Segment start = [%ul]; end  = [%ul]\n", task->mm->start_data, task->mm->end_data);
-                printk("Stack Segment start = [%ul]\n", task->mm->start_stack);
+                printk("Code Segment start = [%lu]; end  = [%lu]\n", task->mm->start_code, task->mm->end_code);
+                printk("Data Segment start = [%lu]; end  = [%lu]\n", task->mm->start_data, task->mm->end_data);
+                printk("Stack Segment start = [%lu]\n", task->mm->start_stack);
 
                 return 0;
             }
 
-            else if (p->active_mm == NULL){
+            else if (task->active_mm == NULL)
+            {
                 printk(KERN_INFO "In the thread, using active_mm\n");
             }
         }
