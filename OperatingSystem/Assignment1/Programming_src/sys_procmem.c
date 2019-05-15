@@ -1,6 +1,7 @@
 #include <linux/linkage.h>
 #include <linux/signal.h>
 #include <linux/kernel.h> //include KERN_INFO
+#include <linux/sched.h> //include for_each_process()
 #include <linux/mm.h>
 #include <linux/uaccess.h> //include copy_to_user
 
