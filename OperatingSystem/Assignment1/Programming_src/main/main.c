@@ -7,7 +7,7 @@
 int main() { 
     pid_t mypid = getpid(); 
     printf("PID: %d\n", mypid); 
-    struct proc_segs info; 
+    struct proc_segs *info; 
     
     if (procmem(mypid, &info) == 0) 
     { 
