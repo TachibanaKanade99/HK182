@@ -13,7 +13,7 @@ struct proc_segs{
     unsigned long start_stack;
 };
 
-long sys_procmem(pid_t pid, struct proc_segs *info){
+long procmem(pid_t pid, struct proc_segs *info){
     //TODO: implement the wrapper here:
     long sysvalue;
     sysvalue = syscall(377, pid, info);
