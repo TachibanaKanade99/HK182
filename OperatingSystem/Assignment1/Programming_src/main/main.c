@@ -17,21 +17,21 @@ int main(int argc, char **argv) {
         printf("pid = %d\n", (int) mypid);
         procmem(mypid, info);
     
-        // if (res == 0){ 
-        //     printf("Student ID: %lu \n", info.studentID); 
-        //     printf("Code segment: 0x%lx-0x%lx\n", info.start_code, info.end_code); 
-        //     printf("Data segment: 0x%lx-0x%lx\n", info.start_data, info.end_data); 
-        //     printf("Heap segment: 0x%lx-0x%lx\n", info.start_heap, info.end_heap); 
-        //     printf("Start stack: 0x%lx\n", info.start_stack); 
-        // } 
+        if (res == 0){ 
+            printf("Student ID: %lu \n", info->studentID); 
+            printf("Code segment: 0x%lx-0x%lx\n", info->start_code, info->end_code); 
+            printf("Data segment: 0x%lx-0x%lx\n", info->start_data, info->end_data); 
+            printf("Heap segment: 0x%lx-0x%lx\n", info->start_heap, info->end_heap); 
+            printf("Start stack: 0x%lx\n", info->start_stack); 
+        } 
         
-    //     else{ 
-    //         printf("Cannot get information from the process %d\n", mypid); 
-    //     } 
+        else{ 
+            printf("Cannot get information from the process %d\n", mypid); 
+        } 
             
-    //         // If necessary, uncomment the following line to make this program run 
-    //         // long enough so that we could check its maps file 
-    //         //sleep(100); 
+            // If necessary, uncomment the following line to make this program run 
+            // long enough so that we could check its maps file 
+            //sleep(100); 
     }
 
     return 0;
