@@ -16,14 +16,15 @@ int main(int argc, char **argv) {
         pid_t mypid = (pid_t) atoi(argv[1]);
         printf("pid = %d\n", (int) mypid);
         int res = procmem(mypid, &info);
+        printf("%d\n", res);
     
-        if (res == 0){ 
-            printf("Student ID: %lu \n", info.studentID); 
-            printf("Code segment: 0x%lx-0x%lx\n", info.start_code, info.end_code); 
-            printf("Data segment: 0x%lx-0x%lx\n", info.start_data, info.end_data); 
-            printf("Heap segment: 0x%lx-0x%lx\n", info.start_heap, info.end_heap); 
-            printf("Start stack: 0x%lx\n", info.start_stack); 
-        } 
+        // if (res == 0){ 
+        //     printf("Student ID: %lu \n", info.studentID); 
+        //     printf("Code segment: 0x%lx-0x%lx\n", info.start_code, info.end_code); 
+        //     printf("Data segment: 0x%lx-0x%lx\n", info.start_data, info.end_data); 
+        //     printf("Heap segment: 0x%lx-0x%lx\n", info.start_heap, info.end_heap); 
+        //     printf("Start stack: 0x%lx\n", info.start_stack); 
+        // } 
         
     //     else{ 
     //         printf("Cannot get information from the process %d\n", mypid); 
