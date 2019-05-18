@@ -2,7 +2,8 @@
 #include <sys/types.h> 
 #include <unistd.h> 
 #include <stdio.h> 
-#include <stdint.h> 
+#include <stdint.h>
+#include <stdlib.h> 
 
 int main(int argc, char **argv) {  
     struct proc_segs info;
@@ -12,15 +13,15 @@ int main(int argc, char **argv) {
     }
 
     else{
-        pid_t pid = (pid_t) atoi(argv[1]);
-        printf("pid = %d\n", (int) pid);
+        pid_t mypid = (pid_t) atoi(argv[1]);
+        printf("pid = %d\n", (int) mypid);
     
         if (procmem(mypid, &info) == 0){ 
             printf("Student ID: %lu \n", info.studentID); 
-            printf("Code segment: %lx-%lx\n", info.start_code, info.end_code); 
-            printf("Data segment: %lx-%lx\n", info.start_data, info.end_data); 
-            printf("Heap segment: %lx-%lx\n", info.start_heap, info.end_heap); 
-            printf("Start stack: %lx\n", info.start_stack); 
+            printf("Code segment: 0x%lx-0x%lx\n", info.start_code, info.end_code); 
+            printf("Data segment: 0x%lx-0x%lx\n", info.start_data, info.end_data); 
+            printf("Heap segment: 0x%lx-0x%lx\n", info.start_heap, info.end_heap); 
+            printf("Start stack: 0x%lx\n", info.start_stack); 
         } 
         
         else{ 
