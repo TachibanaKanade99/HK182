@@ -6,7 +6,7 @@
 #include <stdlib.h> 
 
 int main(int argc, char **argv) {  
-    struct proc_segs info;
+    struct proc_segs *info;
 
     if (argc < 2){
         printf("Please input the pid as a command line argument!\n");
