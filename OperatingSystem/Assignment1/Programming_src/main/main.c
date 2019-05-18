@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     else{
         pid_t mypid = (pid_t) atoi(argv[1]);
         printf("pid = %d\n", (int) mypid);
-        procmem(mypid, info);
+        int res = procmem(mypid, info);
     
         if (res == 0){ 
             printf("Student ID: %lu \n", info->studentID); 
