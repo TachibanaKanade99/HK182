@@ -11,7 +11,8 @@ int main() {
     
     if (procmem(mypid, &info) == 0) 
     { 
-        printf("Student ID: %lu \n", info.studentID); printf("Code segment: %lx-%lx\n", info.start_code, info.end_code); 
+        printf("Student ID: %lu \n", info.studentID); 
+	printf("Code segment: %lx-%lx\n", info.start_code, info.end_code); 
         printf("Data segment: %lx-%lx\n", info.start_data, info.end_data); 
         printf("Heap segment: %lx-%lx\n", info.start_heap, info.end_heap); 
         printf("Start stack: %lx\n", info.start_stack); 
@@ -24,5 +25,7 @@ int main() {
         
         // If necessary, uncomment the following line to make this program run 
         // long enough so that we could check its maps file 
-        sleep(100); 
+        //sleep(100); 
+
+	return 0;
 }
