@@ -8,9 +8,9 @@
 int main(int argc, char **argv) {  
     struct proc_segs info;
 
-    // if (argc < 2){
-    //     printf("Please input the pid as a command line argument!\n");
-    // }
+    if (argc < 2){
+        printf("Please input the pid as a command line argument!\n");
+    }
 
     // else{
     //     pid_t mypid = (pid_t) atoi(argv[1]);
