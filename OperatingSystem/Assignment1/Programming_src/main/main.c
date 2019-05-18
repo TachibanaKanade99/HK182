@@ -12,9 +12,9 @@ int main(int argc, char **argv) {
         printf("Please input the pid as a command line argument!\n");
     }
 
-    // else{
-    //     pid_t mypid = (pid_t) atoi(argv[1]);
-    //     printf("pid = %d\n", (int) mypid);
+    else{
+        pid_t mypid = (pid_t) atoi(argv[1]);
+        printf("pid = %d\n", (int) mypid);
     
     //     if (procmem(mypid, &info) == 0){ 
     //         printf("Student ID: %lu \n", info.studentID); 
@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     //         // If necessary, uncomment the following line to make this program run 
     //         // long enough so that we could check its maps file 
     //         //sleep(100); 
-    // }
+    }
 
     return 0;
 }
