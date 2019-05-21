@@ -39,6 +39,7 @@ asmlinkage long sys_procmem(int pid, struct proc_segs *info){
                 user.start_stack = task->mm->start_stack;
 
                 int result = copy_to_user(info, &user, sizeof(user));
+                //The copy_to_user is to copy the data from the user space into the kernel space
 
                 if (result == 0)
                 { 
