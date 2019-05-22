@@ -8,17 +8,18 @@
 int main(int argc, char **argv) {  
     struct proc_segs *info;
 
-    if (argc < 2){
-        printf("Please input the pid as a command line argument!\n");
-    }
+    //if (argc < 2){
+        //printf("Please input the pid as a command line argument!\n");
+    //}
 
-    else{
-        pid_t mypid = (pid_t) atoi(argv[1]);
+    //else{
+        //pid_t mypid = (pid_t) atoi(argv[1]);
+	pid_t mypid = getpid();
         printf("pid = %d\n", (int) mypid);
         int res = procmem(mypid, info);
     
         if (res == 0){ 
-            printf("Student ID: %lu \n", info->studentID); 
+            printf("Student ID: %lu\n", info->studentID); 
             printf("Code segment: 0x%lx-0x%lx\n", info->start_code, info->end_code); 
             printf("Data segment: 0x%lx-0x%lx\n", info->start_data, info->end_data); 
             printf("Heap segment: 0x%lx-0x%lx\n", info->start_heap, info->end_heap); 
@@ -31,8 +32,8 @@ int main(int argc, char **argv) {
             
             // If necessary, uncomment the following line to make this program run 
             // long enough so that we could check its maps file 
-            //sleep(100); 
-    }
+            sleep(100); 
+    //}
 
     return 0;
 }
