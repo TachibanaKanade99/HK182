@@ -7,7 +7,7 @@
 // included for __init and __exit macros
 
 #include <linux/mm.h>
-#include <linux/sched/signal.h>
+#include <linux/sched.h>
 #include <linux/delay.h>
 
 MODULE_LICENSE("GPL");
@@ -35,9 +35,9 @@ static int __init procmem_init(void){
                 printk(KERN_INFO "task->mm not null !\n");
 
                 // TODO: show its memory layout
-                printk("Code Segment start = [%lu]; end  = [%lu]\n", task->mm->start_code, task->mm->end_code);
-                printk("Data Segment start = [%lu]; end  = [%lu]\n", task->mm->start_data, task->mm->end_data);
-                printk("Stack Segment start = [%lu]\n", task->mm->start_stack);
+                printk("Code Segment start = [0x%lx]; end  = [0x%lx]\n", task->mm->start_code, task->mm->end_code);
+                printk("Data Segment start = [0x%lx]; end  = [0x%lx]\n", task->mm->start_data, task->mm->end_data);
+                printk("Stack Segment start = [0x%lu]\n", task->mm->start_stack);
 
                 return 0;
             }
