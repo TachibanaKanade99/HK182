@@ -6,7 +6,7 @@
 #include <linux/uaccess.h> //include copy_to_user
 
 struct proc_segs{
-    unsigned long long studentID;
+    unsigned long studentID;
     unsigned long start_code;
     unsigned long end_code;
     unsigned long start_data;
