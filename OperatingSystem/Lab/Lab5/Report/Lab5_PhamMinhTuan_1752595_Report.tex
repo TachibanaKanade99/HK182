@@ -1,0 +1,175 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=1.8cm,bottom=2.8cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+%Graphics packages:
+\usepackage{graphicx, graphics}
+\usepackage{tabularx, caption}
+\usepackage{multirow, multicol}
+\usepackage{setspace, tikz}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{vietnam}
+
+\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+
+
+%fancyhdr:
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25, 15)(0, 0)
+    \put(0, -8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+   \end{picture}&
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, VNU-HCM}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+
+\fancyhead[R]{
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf
+    \end{tabular}
+}
+
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Operating System (Spring 2019)}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY, VNU HCM \\
+            FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+        \end{center}
+
+        \vspace{1cm}
+
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=3cm]{hcmut.png}
+            \end{center}
+        \end{figure}
+
+        \vspace{1cm}
+
+        \begin{center}
+            \begin{tabular}{c}
+                \multicolumn{1}{l}{\textbf{\LARGE OPERATING SYSTEM}} \\
+                ~~\\
+                \hline
+                \\
+                \multicolumn{1}{l}{\LARGE Lab 5: Thread} \\
+                \\
+                \hline
+                \\
+                \hspace{5cm} Pham Minh Tuan - MSSV: 1752595
+            \end{tabular}
+        \end{center}
+    \end{titlepage}
+
+%Newpage:
+\newpage
+
+\section{Exercises}
+
+\subsection{Questions:}
+
+\textbf{Question 1:} What resources are used when a thread is created ? How do they differ from those used when a process is created?
+
+\begin{itemize}
+    \item When thread is created they are independent executing the program like processes, except the global memory, the initialized data, uninitialized data, and heap segments are shared between threads.
+    \item When process is created, for example \texttt{fork()}, the child created doesn't share the memory with parent's process, instead it copies all the attributes and resources existed in and executes independently with its parent.  
+\end{itemize}
+
+\bigbreak
+\textbf{Question 2:}
+\begin{enumerate}[label=(\alph*)]
+    \item How is concurrency different from parallelism? Provide an example to clarify your answer. In developing your answer, be sure to address the definition of concurrency and parallelism.
+
+    \bigbreak
+    \begin{itemize}
+        \item Concurrency is when two or more tasks can start, run and terminate in overlapping time periods. That is, it doesn't necessarily to run at same instant at the time. For example the \textit{multitasking} on the single-core machine
+        \item Parallelism is when two or more tasks \textbf{literally} run at the same time periods. For instance, the \textit{multi-core} processor.
+    \end{itemize}
+
+    \item Then explain how it is possible to have concurrency but not parallelism. \\
+    
+    \begin{itemize}
+        \item The concurrency is possible to happen when we have a shared resources between two or more tasks, it requires the way to perform each jobs in task not really exactly at the same time.
+        \item And the way concurrency performs can be interrupted at specific time (synchronization in resources)
+    \end{itemize}
+\end{enumerate}
+
+\section{Programming Exercises:}
+
+\textbf{Problem 1:} 
+
+\begin{itemize}
+    \item Explain how your program solve the problem concurrently (e.g., how did you distribute the counting task to each thread?).
+
+    \begin{itemize}
+        \item The shared variable is number of point in circle and number of point per thread.
+        \item I divide points equally in 5 threads and each thread will concurrently find and count the point that is inside the circle.
+        \item I initialize the mutex, and use mutex for locking in thread function to update the number of thread inside the circle, also call \texttt{pthread\_exit(NULL)} at the end of thread function.
+        \item After all threads finishes its work, I call \texttt{pthread\_join()}, to join the result of each thread.
+        \item When the calculation completes call \texttt{pthread\_exit(NULL)} to exit the main thread.
+    \end{itemize}
+
+    \item How does your method augment the performance? (i.e., determine the speed-up, the difference in running time between multithreaded and single-threaded program. You should calculate the time reduced in terms of number of threads)
+    
+    \begin{itemize}
+        \item Since I divide the counting point task into 5 task, so the time for finish the counting is reduced to 5 times compared with the single-threaded program.
+        \item However the time or speed-up of the program depends on the cores of the CPU. If the CPU has only 1 core, the time spent for a single-threaded program or the multithreaded program is exactly the same after all because \textbf{only} one thread can be executed at the time only. The difference only occurs when you have multiple CPUs since more than 1 threads can run ar the time. 
+    \end{itemize}
+
+    \item Calculate the execution time needed to handle 100 million points. It should be within 5 seconds. \\
+    
+    \par{The time need to handle 100 million points is 89.7s in total.}
+
+    \bigbreak
+    \includegraphics[scale = 0.7]{Result.png}
+    \bigbreak
+\end{itemize}
+
+\textbf{Problem 2:} \\
+
+\bigbreak
+\includegraphics[scale = 0.7]{code.png}
+\bigbreak
+
+
+\end{document}
