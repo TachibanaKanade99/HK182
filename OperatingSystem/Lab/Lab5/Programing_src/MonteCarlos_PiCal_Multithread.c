@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
+#include <time.h> // calculate execution time
 #include <pthread.h> //All func in pthread return 0 when success and positive nums if failed
 
-#define NUM_THREADS 5
+#define NUM_THREADS 100
 
 //A function will take num of point as argument:
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv){
         printf("Usage: ./MonteCarlos_PiCal_Multithread <number of point>\n");
         exit(1);
     }
-
+    
     //Define pi:
     double pi;
     int n = atoi(argv[1]);
@@ -72,7 +72,7 @@ int main(int argc, char **argv){
         pthread_join(threads[i], NULL);
     }
 
-    //Destroy mutex:
+    //Destroy mutex: does not necessary
     pthread_mutex_destroy(&mutex);
 
     //Calculating pi:
