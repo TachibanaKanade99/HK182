@@ -463,7 +463,7 @@ asmlinkage long sys_procmem(int pid, struct proc_segs *info);
 
 \par{However, I got the error "stack smashing detected <unknown> terminated Aborted", and it is due to the struct needed to define as the pointer in the function procmem. The code in the instruction is totally wrong, and it takes me a whole day to realize it.}
 
-\par{After everything run perfectly, we can check the result with the given one in /proc/<pid>/maps file.} \\
+\par{After everything run perfectly, I check the result with the given one in /proc/1215/maps file.} \\
 
 \includegraphics[scale = 0.7]{result.png}
 \bigbreak
