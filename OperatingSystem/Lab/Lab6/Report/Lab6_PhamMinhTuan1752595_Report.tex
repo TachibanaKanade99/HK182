@@ -1,0 +1,132 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=1.8cm,bottom=2.8cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+%Graphics packages:
+\usepackage{graphicx, graphics}
+\usepackage{tabularx, caption}
+\usepackage{multirow, multicol}
+\usepackage{setspace, tikz}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{vietnam}
+
+\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+
+
+%fancyhdr:
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25, 15)(0, 0)
+    \put(0, -8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+   \end{picture}&
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, VNU-HCM}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+
+\fancyhead[R]{
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf
+    \end{tabular}
+}
+
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Operating System (Spring 2019)}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY, VNU HCM \\
+            FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+        \end{center}
+
+        \vspace{1cm}
+
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=3cm]{hcmut.png}
+            \end{center}
+        \end{figure}
+
+        \vspace{1cm}
+
+        \begin{center}
+            \begin{tabular}{c}
+                \multicolumn{1}{l}{\textbf{\LARGE OPERATING SYSTEM}} \\
+                ~~\\
+                \hline
+                \\
+                \multicolumn{1}{l}{\LARGE Lab 6: Synchronization} \\
+                \\
+                \hline
+                \\
+                \hspace{5cm} Pham Minh Tuan - MSSV: 1752595
+            \end{tabular}
+        \end{center}
+    \end{titlepage}
+
+%Newpage:
+\newpage
+
+\section{Exercises}
+
+\textbf{Problem 1:} Race conditions are possible in many computer systems. Consider a banking system that
+maintains an account balance with two functions: \texttt{deposit} (amount) and \texttt{withdraw} (amount). These
+two functions are passed the amount that is to be deposited or withdrawn from the bank account balance.
+Assume that a husband and wife share a bank account. Concurrently, the husband calls the \texttt{withdraw()}
+function and the wife calls \texttt{deposit()}. Write a short essay listing possible outcomes we could get and
+pointing out in which situations those outcomes are produced. Also, propose methods that the bank could
+apply to avoid unexpected results. \\
+
+\textbf{Answer:} \\
+
+\par{There are many possible outcomes that we could get when the husband and the wife sharing a bank account concurrently perform a transaction. Assume that when a husband perform a \texttt{deposit()} function while the wife call the \texttt{withdraw()} function at the same time, the system will send a copy of the cash in bank account to the husband and wife. However the cash given is the same for both users but each user uses the different operations so the cash will be changed in a different way. So the cash stored in the bank account will be updated concurrently meaning that if the \texttt{withdraw()} finish first, the cash will be update once, and then the \texttt{deposit()}, so the result will be according to the last operation performed. In case that the \texttt{withdraw} and \texttt{deposit} is concurrently called, if the \texttt{withdraw} finishes last then the \texttt{deposit} will not be updated and the loss of cash in the bank deposit would happen or vice versa.} \\
+
+\par{To prevent the loss in cash would happen, we let \textit{only one} operation is entered to change the value of cash in the bank account at specific time, after that it will release to let another operation comes into. If both the \texttt{deposit} and \texttt{withdraw} is performed concurrently, the system will choose the one will enter first depend on the priority and then the other will enter. The section that for changing the value of cash can be called the \textbf{critical section}.} \\
+
+\textbf{Problem 2:} In the Exercise 1 of Lab 5, we wrote a simple multi-threaded program for calculating the
+value of pi using Monte-Carlo method. In this exercise, we also calculate pi using the same method but
+with a different implementation. We create a shared (global) count variable and let worker threads update
+on this variable in each of their iteration instead of on their own local count variable. To make sure the
+result is correct, remember to avoid race conditions when we update the shared global variable by using
+mutex locks. Compare the performance of this approach with the previous one in Lab 5.
+
+\textbf{Answer:} The way I implement the Exercise 1 in Lab5 is actually the same approach as you discuss here in the Problem 2 of Lab6 so there is no change in code in submit for Problem 2.
+
+\end{document}
