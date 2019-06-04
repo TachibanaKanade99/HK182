@@ -1,0 +1,586 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=1.8cm,bottom=2.8cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage{algorithm,algorithmic}
+\usepackage{multirow}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+%Graphics packages:
+\usepackage{graphicx, graphics}
+\usepackage{tabularx, caption}
+\usepackage{multirow, multicol}
+\usepackage{setspace, tikz}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{vietnam}
+
+\newmdenv[linecolor=blue,skipabove=\topsep,skipbelow=\topsep,leftmargin=5pt,rightmargin=-5pt,innerleftmargin=5pt,innerrightmargin=5pt]{mybox}
+
+\newcommand{\tf}{\textbf}
+\newcommand{\quotes}[1]{``#1''}
+\usepackage{minted}
+
+%tikz:
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{
+  gray box/.style={
+    fill=gray!20,
+    draw=gray,
+    minimum width={2*#1ex},
+    minimum height={2em},
+  },
+  annotation/.style={
+    anchor=north,
+  }
+}
+
+%fancyhdr:
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25, 15)(0, 0)
+    \put(0, -8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+   \end{picture}&
+	\begin{tabular}{l}
+		\tf{\bf \ttfamily University of Technology, VNU-HCM}\\
+		\tf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+
+\fancyhead[R]{
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf
+    \end{tabular}
+}
+
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Operating System (Spring 2019)}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY, VNU HCM \\
+            FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+        \end{center}
+
+        \vspace{1cm}
+
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=3cm]{hcmut.png}
+            \end{center}
+        \end{figure}
+
+        \vspace{1cm}
+
+        \begin{center}
+            \begin{tabular}{c}
+                \multicolumn{1}{l}{\tf{\LARGE OPERATING SYSTEM}} \\
+                ~~\\
+                \hline
+                \\
+                \multicolumn{1}{l}{\LARGE Lab 7: CPU Scheduling} \\
+                \\
+                \hline
+                \\
+                \hspace{5cm} Pham Minh Tuan - MSSV: 1752595
+            \end{tabular}
+        \end{center}
+    \end{titlepage}
+
+%Newpage:
+\newpage
+
+\section{Exercises} 
+
+\tf{Summarise:}
+\begin{mybox}
+    \begin{itemize}
+        \item Turnaround time = Time completion - Arrival time
+        \item Waiting time = Turnaround time - Burst time
+        \item Response time = First-run time - Arrival time
+    \end{itemize}
+\end{mybox}
+
+\subsection{Questions: }
+
+\tf{Q1:} Suppose that the following processes arrive for execution at the time instants indicated. Each process
+will run for the amount of time listed. Assume that the scheduler uses non-preemptive scheduling.\\
+
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{c|c|cll}
+        Process & Arrival Time & Burst Time &  &  \\ \cline{1-3}
+        P1      & 0.0          & 8          &  &  \\
+        P2      & 0.4          & 4          &  &  \\
+        P3      & 1.0          & 1          &  & 
+        \end{tabular}
+    \end{table}
+
+\begin{enumerate}[label=\alph*]
+    \item Calculate the average turnaround, waiting and response time for these processes with the FCFS scheduling algorithm? \\
+    
+    \tf{Answer: } \\
+    \begin{itemize}
+        \item t = 0.0 : P1
+        \item t = 8.0 : P2
+        \item t = 12.0 : P3
+        \item t = 13.0 : finish
+    \end{itemize}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 8.0 - 0.0 = 8.0(s)
+        \item T2 = 12.0 - 0.4 = 11.6(s)
+        \item T3 = 13.0 - 1.0 = 12.0(s)
+        \item Average turnaround time = $\dfrac{8.0 + 11.6 + 12.0}{3} \approx 10.53(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 0(s)
+        \item T2 = 11.6 - 4 = 7.6(s)
+        \item T3 = 12.0 - 1 = 11.0(s)
+        \item Average waiting time = $\dfrac{0 + 7.6 + 11.0}{3} = 6.2(s)$
+    \end{itemize}
+
+    \par{Response time: }
+    \begin{itemize}
+        \item T1 = 0(s)
+        \item T2 = 8.0 - 0.4 = 7.6(s)
+        \item T3 = 12.0 - 1.0 = 11.0(s)
+        \item Average response time = $\dfrac{0 + 7.6 + 11.0}{3} = 6.2(s)$
+    \end{itemize}
+    \item  What is the average turnaround, waiting and response time for these processes with the SJF scheduling algorithm? \\
+    
+    \tf{Answer: } \\
+    \begin{itemize}
+        \item t = 0.0 : P1
+        \item t = 8.0 : P3
+        \item t = 9.0 : P2
+        \item t = 13.0 : finish
+    \end{itemize}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 8.0 - 0.0 = 8.0(s)
+        \item T2 = 13.0 - 0.4 = 12.6(s)
+        \item T3 = 9.0 - 1.0 = 8.0(s)
+        \item Average turnaround time = $\dfrac{8.0 + 12.6 + 8.0}{3} \approx 9.53(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 0(s)
+        \item T2 = 12.6 - 4 = 8.6(s)
+        \item T3 = 8.0 - 1 = 7.0(s)
+        \item Average waiting time = $\dfrac{0 + 8.6 + 7.0}{3} = 5.2(s)$
+    \end{itemize}
+
+    \par{Response time: }
+    \begin{itemize}
+        \item T1 = 0(s)
+        \item T2 = 9.0 - 0.4 = 8.6(s)
+        \item T3 = 8.0 - 1.0 = 7.0(s)
+        \item Average response time = $\dfrac{0 + 8.6 + 7.0}{3} = 5.2(s)$
+    \end{itemize}
+    \item  The SJF algorithm is supposed to improve performance, but notice that we chose to run process P1 at time 0 because we did not know that two shorter processes would arrive soon. Compute what the average turnaround time will be if the CPU is left idle for the first 1 unit and then SJF scheduling is used. Remember that processes P1 and P2 are waiting during this idle time, so their waiting time may increase. This algorithm could be called future-knowledge scheduling. \\
+    
+    \tf{Answer: } \\
+    \begin{itemize}
+        \item t = 0.0 : idle
+        \item t = 1.0 : P3
+        \item t = 2.0 : P2
+        \item t = 6.0 : P1
+        \item t = 13.0 : finish
+    \end{itemize}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 13.0 - 0.0 = 13.0(s)
+        \item T2 = 6.0 - 0.4 = 5.6(s)
+        \item T3 = 2.0 - 1.0 = 1.0(s)
+        \item Average turnaround time = $\dfrac{13.0 + 5.6 + 1.0}{3} \approx 6.53(s)$
+    \end{itemize}
+
+    $\rightarrow$ The average turnaround time when let the CPU idle is less than 3 seconds.
+\end{enumerate}
+
+\tf{Q2:} Consider the following set of processes, with the length of the CPU burst given in milliseconds: \\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|cll}
+    Process & Burst Time & Priority &  &  \\ \cline{1-3}
+    P1      & 8          & 4        &  &  \\
+    P2      & 6          & 1        &  &  \\
+    P3      & 1          & 2        &  &  \\
+    P4      & 9          & 2        &  &  \\
+    P5      & 3          & 3        &  & 
+    \end{tabular}
+\end{table}
+
+\par{The processes are assumed to have arrived in the order P1, P2, P3, P4, P5, all at time 0. Draw four Gantt
+charts that illustrate the execution of these processes using the following scheduling algorithms: FCFS,
+SJF, non-preemptive priority (a smaller priority number implies a higher priority), and RR (quantum = 1).
+Calculate the average waiting time and turnaround time of each scheduling algorithm.} \\
+
+\begin{enumerate}
+    \item FCFS:
+
+    \bigbreak
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=8] (p1) {\(P_{1}\)};
+        \node [gray box=6, right=of p1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p3) {\(P_{3}\)};
+        \node [gray box=9, right=of p3] (p4) {\(P_{4}\)};
+        \node [gray box=3, right=of p4] (p5) {\(P_{5}\)};
+      
+        \node [annotation] at (p1.south west) {0};
+        \node [annotation] at (p1.south east) {8};
+        \node [annotation] at (p2.south east) {13};
+        \node [annotation] at (p3.south east) {14};
+        \node [annotation] at (p4.south east) {23};
+        \node [annotation] at (p5.south east) {26};
+    \end{tikzpicture}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 8 - 0 = 8(ms)
+        \item T2 = 13 - 0 = 13(ms)
+        \item T3 = 14 - 0 = 14(ms)
+        \item T4 = 23 - 0 = 23(ms)
+        \item T5 = 26 - 0 = 26(ms)
+        \item Average turnaround time = $\dfrac{8 + 13 + 14 + 23 + 26}{5} = 16.8(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 0(s)
+        \item T2 = 13 - 6 = 7(ms)
+        \item T3 = 14 - 1 = 12(ms)
+        \item T4 = 23 - 9 = 14(ms)
+        \item T5 = 26 - 3 = 23(ms)
+        \item Average waiting time = $\dfrac{0 + 7 + 12 + 14 + 23}{5} = 11.2(s)$
+    \end{itemize}
+
+    \item SJF: \\
+    
+    \bigbreak
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p3) {\(P_{3}\)};
+        \node [gray box=3, right=of p3] (p5) {\(P_{5}\)};
+        \node [gray box=6, right=of p5] (p2) {\(P_{2}\)};
+        \node [gray box=8, right=of p2] (p1) {\(P_{1}\)};
+        \node [gray box=9, right=of p1] (p4) {\(P_{4}\)};
+      
+        \node [annotation] at (p3.south west) {0};
+        \node [annotation] at (p3.south east) {1};
+        \node [annotation] at (p5.south east) {4};
+        \node [annotation] at (p2.south east) {10};
+        \node [annotation] at (p1.south east) {18};
+        \node [annotation] at (p4.south east) {27};
+    \end{tikzpicture}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 18 - 0 = 18(ms)
+        \item T2 = 10 - 0 = 10(ms)
+        \item T3 = 1 - 0 = 1(ms)
+        \item T4 = 27 - 0 = 27(ms)
+        \item T5 = 4 - 0 = 4(ms)
+        \item Average turnaround time = $\dfrac{18 + 10 + 1 + 27 + 4}{5} = 12(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 18 - 8 = 10(s)
+        \item T2 = 10 - 6 = 4(ms)
+        \item T3 = 1 - 1 = 0(ms)
+        \item T4 = 27 - 9 = 18(ms)
+        \item T5 = 4 - 3 = 1(ms)
+        \item Average waiting time = $\dfrac{10 + 4 + 0 + 18 + 1}{5} = 6.6(s)$
+    \end{itemize}
+
+    \item Non-preemptive priority:
+    
+    \bigbreak
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=6] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p3) {\(P_{3}\)};
+        \node [gray box=9, right=of p3] (p4) {\(P_{4}\)};
+        \node [gray box=3, right=of p4] (p5) {\(P_{5}\)};
+        \node [gray box=8, right=of p5] (p1) {\(P_{1}\)};
+      
+        \node [annotation] at (p2.south west) {0};
+        \node [annotation] at (p2.south east) {6};
+        \node [annotation] at (p3.south east) {7};
+        \node [annotation] at (p4.south east) {16};
+        \node [annotation] at (p5.south east) {19};
+        \node [annotation] at (p1.south east) {27};
+    \end{tikzpicture}
+
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 27 - 0 = 27(ms)
+        \item T2 = 6 - 0 = 6(ms)
+        \item T3 = 7 - 0 = 7(ms)
+        \item T4 = 16 - 0 = 16(ms)
+        \item T5 = 19 - 0 = 19(ms)
+        \item Average turnaround time = $\dfrac{27 + 6 + 7 + 16 + 19}{5} = 15(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 27 - 8 = 19(s)
+        \item T2 = 6 - 6 = 0(ms)
+        \item T3 = 7 - 1 = 6(ms)
+        \item T4 = 16 - 9 = 7(ms)
+        \item T5 = 19 - 3 = 16(ms)
+        \item Average waiting time = $\dfrac{19 + 0 + 6 + 7 + 16}{5} = 9,6(s)$
+    \end{itemize}
+
+    \item RR(quantum = 1)
+    
+    \bigbreak
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p3) {\(P_{3}\)};
+        \node [gray box=1, right=of p3] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p5) {\(P_{5}\)};
+        \node [gray box=1, right=of p5] (p1) {\(P_{1}\)};
+        %-------------------------------------------------%
+        \node [annotation] at (p2.south west) {0};
+        \node [annotation] at (p2.south east) {1};
+        \node [annotation] at (p3.south east) {2};
+        \node [annotation] at (p4.south east) {3};
+        \node [annotation] at (p5.south east) {4};
+        \node [annotation] at (p1.south east) {5};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p5) {\(P_{5}\)};
+        \node [gray box=1, right=of p5] (p1) {\(P_{1}\)};
+        %--------------------------------------------------%
+        \node [annotation] at (p2.south west) {5};
+        \node [annotation] at (p2.south east) {6};
+        \node [annotation] at (p4.south east) {7};
+        \node [annotation] at (p5.south east) {8};
+        \node [annotation] at (p1.south east) {9};
+    
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p5) {\(P_{5}\)};
+        \node [gray box=1, right=of p5] (p1) {\(P_{1}\)};
+        %--------------------------------------------------%
+        \node [annotation] at (p2.south west) {9};
+        \node [annotation] at (p2.south east) {10};
+        \node [annotation] at (p4.south east) {11};
+        \node [annotation] at (p5.south east) {12};
+        \node [annotation] at (p1.south east) {13};
+    
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1, right=of p1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p1) {\(P_{1}\)};
+        %--------------------------------------------------%
+        \node [annotation] at (p2.south west) {13};
+        \node [annotation] at (p2.south east) {14};
+        \node [annotation] at (p4.south east) {15};
+        \node [annotation] at (p1.south east) {16};
+        
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p1) {\(P_{1}\)};
+        %--------------------------------------------------%
+        \node [annotation] at (p2.south west) {16};
+        \node [annotation] at (p2.south east) {17};
+        \node [annotation] at (p4.south east) {18};
+        \node [annotation] at (p1.south east) {19};
+    
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1] (p2) {\(P_{2}\)};
+        \node [gray box=1, right=of p2] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p1) {\(P_{1}\)};
+        %-------------------------------------------------%
+        \node [annotation] at (p2.south west) {19};
+        \node [annotation] at (p2.south east) {20};
+        \node [annotation] at (p4.south east) {21};
+        \node [annotation] at (p1.south east) {22};
+        
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1, right=of p1] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p1) {\(P_{1}\)};
+        %-------------------------------------------------%
+        \node [annotation] at (p4.south west) {22};
+        \node [annotation] at (p4.south east) {23};
+        \node [annotation] at (p1.south east) {24};
+        
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1, right=of p1] (p4) {\(P_{4}\)};
+        \node [gray box=1, right=of p4] (p1) {\(P_{1}\)};
+        %------------------------------------------------%
+        \node [annotation] at (p4.south west) {24};
+        \node [annotation] at (p4.south east) {25};
+        \node [annotation] at (p1.south east) {26};
+        
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=-0.5pt]
+        \node [gray box=1, right=of p1] (p4) {\(P_{4}\)};
+        %------------------------------------------------%
+        \node [annotation] at (p4.south west) {26};
+        \node [annotation] at (p4.south east) {27};
+        
+    \end{tikzpicture}
+    
+    \par{Turnaround time: } \\
+    \begin{itemize}
+        \item T1 = 26 - 0 = 26(ms)
+        \item T2 = 20 - 0 = 20(ms)
+        \item T3 = 2 - 0 = 2(ms)
+        \item T4 = 27 - 0 = 27(ms)
+        \item T5 = 12 - 0 = 12(ms)
+        \item Average turnaround time = $\dfrac{25 + 20 + 0 + 27 + 12}{5} = 16.8(s)$
+    \end{itemize}
+
+    \par{Waiting Time: } \\
+    \begin{itemize}
+        \item T1 = 26 - 8 = 18(s)
+        \item T2 = 20 - 6 = 14(ms)
+        \item T3 = 2 - 1 = 1(ms)
+        \item T4 = 27 - 9 = 18(ms)
+        \item T5 = 12 - 3 = 9(ms)
+        \item Average waiting time = $\dfrac{18 + 14 + 1 + 18 + 9}{5} = 12(s)$
+    \end{itemize}
+\end{enumerate}
+
+\tf{Q3:}
+\begin{enumerate}[label = \alph*]
+    \item Describe the trade-off of increasing and decreasing the time quantum in RR. \\
+    \tf{Answer: } \\
+    
+    \begin{itemize}
+        \item Each process is assigned a time slice for its completion. The time slice (or time quantum) is required to complete a process and the time spent for each task or process is the same.
+        \item The trade-off is that since there are long time processes and less time process, and each of them is gained a unchanged time slice, so there are chance that less time process will finish before the end of time slice.
+        \item So, we need to choose the suitable time slice in case of the long delay in completion tasks or processes in overall
+    \end{itemize}
+
+    \item Analyze the advantages and disadvantages of FCFS, SJF, priority and RR scheduling algorithms. \\
+    Specify on which occasion should we use each of those algorithms. \\
+    \begin{enumerate}
+        \item FCFS:
+        \begin{enumerate}
+            \item Advantages:
+            \begin{itemize}
+                \item  It does not require complex logic, simple and easy to implement.
+                \item Every process will get a chance to run, no starvation.
+            \end{itemize}
+
+            \item Disadvantages:
+            \begin{itemize}
+                \item No option for pre-empty.
+                \item If a process executes for a long time, the processes in the back of the queue will have to wait for a long time before they get a chance to be executed.
+            \end{itemize}
+        \end{enumerate}
+
+        \item SJF:
+        \begin{enumerate}
+            \item Advantages:
+            \begin{itemize}
+                \item Short processes are executed first and then followed by longer processes.
+                \item The throughput is increased because more processes can be executed in less amount of time.
+            \end{itemize}
+
+            \item Disadvantages:
+            \begin{itemize}
+                \item The time taken by a process must be known by the CPU beforehand.
+                \item Long processes have long waiting time, starvation occur. 
+            \end{itemize}
+        \end{enumerate}
+
+        \item Priority Scheduling:
+        \begin{enumerate}
+            \item Advantages:
+            \begin{itemize}
+                \item The priority of a process can be selected based on memory requirement, time requirement or user preference.
+            \end{itemize}
+
+            \item Disadvantages:
+            \begin{itemize}
+                \item A second scheduling algorithm is required to schedule the processes in case they have same priority.
+                \item In preemptive priority scheduling, a higher priority process can execute ahead of an already executing lower priority process. If lower priority process keeps waiting for higher priority processes, starvation occurs.
+            \end{itemize}
+        \end{enumerate}
+
+        \item RR:
+        \begin{enumerate}
+            \item Advantages:
+            \begin{itemize}
+                \item Each process is served by the CPU for a fixed time quantum.
+                \item Starvation doesn't occur because for each round robin cycle, every process is given a fixed time to execute. No process is left behind.
+            \end{itemize}
+
+            \item Disadvantages:
+            \begin{itemize}
+                \item The throughput in RR largely depends on the choice of the length of the time quantum. If time quantum is longer than needed, it tends to exhibit the same behavior as FCFS.
+                \item If time quantum is shorter than needed, the number of times that CPU switches from one process to another process, increases. This leads to decrease in CPU efficiency.
+            \end{itemize}
+        \end{enumerate}
+    \end{enumerate}
+    
+    \tf{In which situations we should use which CPU Scheduling:} \\
+    \begin{enumerate}
+        \item FCFS: The incoming processes are short and there is no need for the processes to execute in a specific order.
+        \item SJF: If each process is already known time to complete, and burst time of each process is short to avoid the starvation.
+        \item Priority: The processes are a mix of user based and kernel based processes since kernel based processes have higher priority when compared to user based processes in general.
+        \item RR: The processes are a mix of long and short processes and the task will only be completed if all the processes are executed successfully in a given time. 
+    \end{enumerate}
+\end{enumerate}
+
+
+\end{document}
