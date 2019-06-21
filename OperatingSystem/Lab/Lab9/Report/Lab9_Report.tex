@@ -1,0 +1,193 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[a4paper,left=2cm,right=2cm,top=1.8cm,bottom=2.8cm]{geometry}
+
+%use English lang:
+\usepackage[english]{babel}
+
+\usepackage{pictex,amsmath,amsfonts,amssymb,amsthm,verbatim}
+\usepackage{fullpage}
+\usepackage{algorithm,algorithmic}
+\usepackage{gensymb}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+
+\setlength{\voffset}{-0.25in}
+\setlength{\headsep}{+0.5in}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+
+\def\vu{\mathbf{u}}
+\def\vv{\mathbf{v}}
+\def\vb{\mathbf{b}}
+\def\vw{\mathbf{w}}
+\def\vs{\mathbf{s}}
+
+%Font:
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+
+%Bibliography
+%\usepackage[backend = biber, style = authoryear]{biblatex}
+%\addbibresource{HelloWorld.bib}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+%Graphics packages:
+\usepackage{graphicx, graphics}
+\usepackage{tabularx, caption}
+\usepackage{multirow, multicol}
+\usepackage{setspace, tikz}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[utf8]{inputenc}
+
+%Box:
+\newmdenv[linecolor=blue,
+          skipabove=\topsep,
+          skipbelow=\topsep,
+          leftmargin=5pt,
+          rightmargin=-5pt,
+          innerleftmargin=5pt,
+          innerrightmargin=5pt]{mybox}
+
+%Minted (for code):
+\usepackage{minted}
+\newminted{C}{frame = lines, framerule = 2pt}
+          
+%Macro:
+\newcommand{\quotes}[1]{``#1''}
+\newcommand{\tf}{\textbf}
+\newcommand{\ti}{\textit}
+\newcommand{\ttt}{\texttt}
+\newcommand{\ud}{\underline}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\larrow}{\leftarrow}
+\newcommand{\lrarrow}{\leftrightarrow}
+
+
+%fancyhdr:
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+    \begin{tabular}{rl}
+        \begin{picture}(25, 15)(0, 0)
+            \put(0, -8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+        \end{picture}&
+        \begin{tabular}{l}
+            \textbf{\bf \ttfamily University of Technology, VNU-HCM}\\
+            \textbf{\bf \ttfamily Faculty of Computer Science \& Engineering}
+        \end{tabular} 	
+    \end{tabular}
+}
+
+\fancyhead[R]{
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf
+    \end{tabular}
+}
+
+\fancyfoot{} %clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily CC01 - Operating System}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/ \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY, VNU HCM \\
+            FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+        \end{center}
+
+        \vspace{1cm}
+
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=3cm]{hcmut.png}
+            \end{center}
+        \end{figure}
+
+        \vspace{1cm}
+
+        \begin{center}
+            \begin{tabular}{c}
+                \multicolumn{1}{l}{\textbf{\LARGE OPERATING SYSTEM}} \\
+                ~~\\
+                \hline
+                \\
+                \multicolumn{1}{l}{\LARGE LAB 9: PAGING} \\
+                \\
+                \hline
+                \\
+                \hspace{5cm} Pham Minh Tuan - MSSV: 1752595
+            \end{tabular}
+        \end{center}
+    \end{titlepage}
+
+%New page:
+\newpage
+
+%Table of contents:
+\renewcommand*\contentsname{Contents:}
+\tableofcontents
+
+%Newpage
+\newpage
+
+\section{Exercises}
+
+\subsection{Question}
+
+\par{Consider the page table shown in Figure 2.1 for a system with 12-bit virtual and physical address and with 256-byte page. Assume that the list of free page frames consists of D, E, F (that is, D is at the head of the list, E is second, and F is the last)}
+
+\bigbreak
+\includegraphics[scale = 0.7]{Figure.png}
+\bigbreak
+
+\par{Convert the following virtual address into their equivalent physical address in hexadecimal. All numbers are given in hexadecimal. (A dash for a page frame indicates that the page is not in memory)}
+
+\begin{itemize}
+    \item 9EF
+    \item 111
+    \item 700
+    \item 0FF
+\end{itemize}
+
+\par{We have: }
+
+\begin{itemize}
+    \item 12-bit virtual address $\rarrow$ Total virtual memory size is $2^{12}$.
+    \item Size of a single page is 256-byte $\rarrow$ $2^{8}$ $\rarrow$ 8-bit is in LSB is page offset 
+    \item Total number of page is $\dfrac{2^{12}}{2^{8}} = 2^{4}$ $\rarrow$ The remaining 4-bit is page number 
+    \item Therefore we only look for the 4-bit in MSB of the virtual address in the table, if the page we are looking for is not in memory, we will allocate it for the free page frames that is D, E, F.
+\end{itemize}
+
+%newpage:
+\newpage
+
+\tf{Answer: }
+\begin{itemize}
+    \item 9EF $\rarrow$ 0EF
+    \item 111 $\rarrow$ 211
+    \item 700 $\rarrow$ D00
+    \item 0FF $\rarrow$ EFF
+\end{itemize}
+
+\subsection{Programming Exercise}
+
+\par{The result: } \\
+
+\bigbreak
+\includegraphics[scale = 0.7]{result.png}
+\bigbreak
+
+
+\end{document}
+
+%To compile this .tex file, you need to have -shell-escape in command to let the system understand the minted package:
